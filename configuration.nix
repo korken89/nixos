@@ -94,6 +94,7 @@
     nil
     nixfmt-rfc-style
     git
+    kicad
   ];
 
   environment.variables.SUDO_EDITOR = "hx";
