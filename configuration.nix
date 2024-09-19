@@ -95,6 +95,7 @@
     nixfmt-rfc-style
     git
     kicad
+    nvd
   ];
 
   environment.variables.SUDO_EDITOR = "hx";
