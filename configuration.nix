@@ -104,8 +104,9 @@
 
     # Applications
     chromium
-    telegram-desktop
     mattermost-desktop
+    telegram-desktop
+    zathura
 
     # Tooling
     kicad
