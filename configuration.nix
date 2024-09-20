@@ -134,7 +134,7 @@
   };
 
   #
-  # Enable huprland
+  # Enable hyprland
   #
   programs.hyprland = {
     enable = true;
@@ -146,9 +146,14 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  # Hardware config
   hardware = {
     opengl.enable = true;
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
   };
+
+  services.blueman.enable = true;
 
   xdg.portal = {
     enable = true;
