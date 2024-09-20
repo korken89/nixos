@@ -117,6 +117,7 @@ in
     waybar
     wl-mirror
     swaylock
+    brightnessctl
 
     # Development
     rust-bin.stable.latest.default
