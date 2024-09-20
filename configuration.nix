@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "emifre-laptop-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -78,10 +78,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # Utilities
     wget
     curl
     helix
+    networkmanagerapplet
+    nil
+    nixfmt-rfc-style
+    git
+    nvd
+
+    # WM stuff
     kitty
     alacritty
     waybar
@@ -89,16 +96,16 @@
     libnotify
     swww
     rofi-wayland
-    wofi
+    rofimoji
+
+    # Applications
     chromium
-    networkmanagerapplet
-    nil
-    nixfmt-rfc-style
-    git
+
+    # Tooling
     kicad
-    nvd
   ];
 
+  # Make sure helix is used for commands
   environment.variables.SUDO_EDITOR = "hx";
   environment.variables.EDITOR = "hx";
 
@@ -109,6 +116,7 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      font-awesome
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
 
