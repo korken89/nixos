@@ -5,8 +5,8 @@
 { config, pkgs, ... }:
 
 let
-  rust-overlay = (
-    import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz")
+  rust-overlay = import (
+    builtins.fetchTarball { url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"; }
   );
 in
 {
@@ -20,7 +20,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Overlays
-  # nixpkgs.overlays = [ rust-overlay.overlays.default ];
+  nixpkgs.overlays = [ rust-overlay ];
 
   networking.hostName = "emifre-laptop-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
