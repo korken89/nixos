@@ -20,7 +20,17 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Overlays
-  nixpkgs.overlays = [ rust-overlay ];
+  nixpkgs = {
+    overlays = [ rust-overlay ];
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        unstable =
+          import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
+            { };
+      };
+    };
+  };
 
   networking.hostName = "emifre-laptop-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -66,9 +76,6 @@ in
     ];
     packages = with pkgs; [ ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Fish shell
   programs.fish.enable = true;
@@ -118,7 +125,7 @@ in
     clang
     pkg-config
     openssl
-    probe-rs
+    unstable.probe-rs-tools
 
     # Applications
     chromium
