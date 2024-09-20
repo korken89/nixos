@@ -79,24 +79,27 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Utilities
-    wget
     curl
+    git
     helix
     networkmanagerapplet
     nil
     nixfmt-rfc-style
-    git
     nvd
+    wget
+    ripgrep
+    fd
+    sd
 
     # WM stuff
-    kitty
     alacritty
-    waybar
     dunst
+    kitty
     libnotify
-    swww
-    rofi-wayland
     rofimoji
+    rofi-wayland
+    swww
+    waybar
 
     # Applications
     chromium
