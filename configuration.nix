@@ -115,6 +115,7 @@ in
     rust-bin.stable.latest.default
     rust-analyzer
     cargo
+    clang
 
     # Applications
     chromium
