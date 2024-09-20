@@ -101,6 +101,7 @@
     swww
     waybar
     wl-mirror
+    swaylock
 
     # Applications
     chromium
