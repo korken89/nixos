@@ -116,6 +116,9 @@ in
     rust-analyzer
     cargo
     clang
+    pkg-config
+    openssl
+    probe-rs
 
     # Applications
     chromium
