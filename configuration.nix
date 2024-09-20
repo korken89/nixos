@@ -111,6 +111,11 @@ in
     wl-mirror
     swaylock
 
+    # Development
+    rust-bin.stable.latest.default
+    rust-analyzer
+    cargo
+
     # Applications
     chromium
     mattermost-desktop
