@@ -96,10 +96,10 @@ in
     # Utilities
     curl
     git
-    helix
+    unstable.helix
     networkmanagerapplet
-    nil
-    nixfmt-rfc-style
+    unstable.nil
+    unstable.nixfmt-rfc-style
     nvd
     wget
     ripgrep
@@ -134,7 +134,7 @@ in
     zathura
 
     # Tooling
-    kicad
+    unstable.kicad
   ];
 
   # Make sure helix is used for commands
