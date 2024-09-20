@@ -100,9 +100,12 @@
     rofi-wayland
     swww
     waybar
+    wl-mirror
 
     # Applications
     chromium
+    telegram-desktop
+    mattermost-desktop
 
     # Tooling
     kicad
