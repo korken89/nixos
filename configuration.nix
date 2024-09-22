@@ -161,8 +161,8 @@
     fontconfig = {
       defaultFonts = {
         monospace = [
-          "Noto Color Emoji"
           "Fira Code"
+          "Noto Color Emoji"
         ];
       };
     };
