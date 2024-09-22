@@ -82,6 +82,14 @@ in
   programs.starship.enable = true;
   programs.bash = {
     interactiveShellInit = ''
+      # Check if it's a login shell
+      if [ "$PPID" -eq 1 ]; then
+        # Check if Hyprland is running and start if not
+        if ! pgrep -x "Hyprland" > /dev/null; then
+            ${pkgs.hyprland}/bin/hyprland &
+        fi
+      fi
+
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
       then
         shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
