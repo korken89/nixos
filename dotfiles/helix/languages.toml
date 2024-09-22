@@ -1,0 +1,35 @@
+[[language]]
+name = "nix"
+formatter = { command = "nixfmt" }
+auto-format = true
+
+[language-server.ltex-ls]
+command = "ltex-ls"
+
+[language-server.ltex-ls.config]
+ltex.enabled = ["context", "html", "markdown", "restructuredtext", "rust", "git-commit", "git-rebase"]
+
+[[language]]
+text-width = 100
+name = "rust"
+# spell checking in Rust on master
+language-servers = [ "ltex-ls", "rust-analyzer" ]
+
+# [language.config]
+# rust-analyzer.diagnostics.disabled = ["mismatched-arg-count", "macro-error", "unresolved-proc-macro"]
+
+[[language]]
+name = "git-commit"
+language-servers = [ "ltex-ls" ]
+
+
+[[language]]
+name = "markdown"
+text-width = 100
+language-servers = [ "ltex-ls", "marksman" ]
+formatter = { command = 'prettier', args = [
+  "--parser",
+  "markdown",
+  "--prose-wrap",
+  "always",        # <always|never|preserve>
+] }

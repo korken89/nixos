@@ -1,0 +1,34 @@
+theme = "dark_plus"
+
+[editor]
+line-number = "relative"
+idle-timeout = 0
+rulers = [100]
+bufferline = "always"
+mouse = false
+auto-pairs = false
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = false
+
+[editor.indent-guides]
+render = true
+character = "┆" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25 # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""  # set wrap-indicator to "" to hide it
+#wrap-at-text-width = true
+
+# [keys.normal]
+# "space" = { q = ":q" }
+# A-w = ":w"
