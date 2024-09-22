@@ -76,12 +76,9 @@
   programs.starship.enable = true;
   programs.bash = {
     interactiveShellInit = ''
-      # Check if it's a login shell
-      if [ "$PPID" -eq 1 ]; then
-        # Check if Hyprland is running and start if not
-        if ! pgrep -x "Hyprland" > /dev/null; then
-            ${pkgs.hyprland}/bin/hyprland &
-        fi
+      # Check if Hyprland is running and start if not
+      if ! pgrep -x "Hyprland" > /dev/null; then
+          ${pkgs.hyprland}/bin/hyprland &
       fi
 
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
