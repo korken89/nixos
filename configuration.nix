@@ -122,12 +122,16 @@
     brightnessctl
 
     # Development
-    rustup
-    rust-analyzer
     clang
-    pkg-config
     openssl
+    pkg-config
+    unstable.cargo-binutils
+    unstable.cargo-bloat
+    unstable.cargo-expand
+    unstable.cargo-watch
     unstable.probe-rs-tools
+    unstable.rust-analyzer
+    unstable.rustup
 
     # Applications
     chromium
