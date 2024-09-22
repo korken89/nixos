@@ -4,11 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  rust-overlay = import (
-    builtins.fetchTarball { url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"; }
-  );
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -21,7 +16,6 @@ in
 
   # Overlays
   nixpkgs = {
-    overlays = [ rust-overlay ];
     config = {
       allowUnfree = true;
       packageOverrides = pkgs: {
@@ -128,9 +122,8 @@ in
     brightnessctl
 
     # Development
-    rust-bin.stable.latest.default
+    rustup
     rust-analyzer
-    cargo
     clang
     pkg-config
     openssl
