@@ -77,7 +77,7 @@
   programs.bash = {
     interactiveShellInit = ''
       # Check if Hyprland is running and start if not
-      if ! pgrep -x "Hyprland" > /dev/null; then
+      if ! pgrep -i "hyprland" > /dev/null; then
           ${pkgs.hyprland}/bin/hyprland &
       fi
 
