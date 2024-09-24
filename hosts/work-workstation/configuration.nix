@@ -1,40 +1,35 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+{
   # Kernel (latest)
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Bootloader.
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Overlays
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      packageOverrides = pkgs: {
-        unstable =
-          import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
-            { };
-      };
-    };
-  };
+  # # Overlays
+  # nixpkgs = {
+  #   config = {
+  #     allowUnfree = true;
+  #     packageOverrides = pkgs: {
+  #       unstable =
+  #         import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
+  #           { };
+  #     };
+  #   };
+  # };
 
-  networking.hostName = "emifre-laptop-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "emifre-workstation"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -58,9 +53,8 @@
   };
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services.xserver = {
+    xkb.layout = "us";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -79,11 +73,6 @@
   programs.starship.enable = true;
   programs.bash = {
     interactiveShellInit = ''
-      # Check if Hyprland is running and start if not
-      if ! pgrep -i "hyprland" > /dev/null; then
-          ${pkgs.hyprland}/bin/hyprland &
-      fi
-
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
       then
         shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
@@ -97,16 +86,16 @@
   environment.systemPackages = with pkgs; [
     # Utilities
     curl
-    git
-    unstable.helix
-    networkmanagerapplet
-    unstable.nil
-    unstable.nixfmt-rfc-style
-    nvd
-    wget
-    ripgrep
     fd
+    git
+    helix
+    networkmanagerapplet
+    nil
+    nixfmt-rfc-style
+    nvd
+    ripgrep
     sd
+    wget
 
     # WM stuff
     alacritty
@@ -122,25 +111,27 @@
     brightnessctl
 
     # Development
+    cargo-binutils
+    cargo-bloat
+    cargo-expand
+    cargo-watch
     clang
     openssl
     pkg-config
-    unstable.cargo-binutils
-    unstable.cargo-bloat
-    unstable.cargo-expand
-    unstable.cargo-watch
-    unstable.probe-rs-tools
-    unstable.rust-analyzer
-    unstable.rustup
+    probe-rs-tools
+    rust-analyzer
+    rustup
 
     # Applications
     chromium
+    firefox
     mattermost-desktop
     telegram-desktop
     zathura
+    spotify
 
     # Tooling
-    unstable.kicad
+    kicad
   ];
 
   # Make sure helix is used for commands
@@ -181,9 +172,23 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  # # Autostart hyprland
+  # systemd.user.services.hyprland = {
+  #   description = "Hyprland Wayland Compositor";
+  #   after = [ "graphical-session.target" ];
+  #   requires = [ "graphical-session.target" ];
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.hyprland}/bin/hyprland";
+  #     # Restart = "always";
+  #     Environment = "DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/%U PATH=/run/current-system/sw/bin";
+  #     WorkingDirectory = "%h";
+  #   };
+  #   wantedBy = [ "default.target" ];
+  # };
+
   # Hardware config
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
   };
@@ -199,7 +204,6 @@
   services.dbus.enable = true;
 
   # Enable sound with pipewire
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -240,4 +244,5 @@
     "nix-command"
     "flakes"
   ];
+
 }
