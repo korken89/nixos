@@ -116,10 +116,12 @@
     cargo-expand
     cargo-watch
     clang
+    flip-link
+    ltex-ls
     openssl
     pkg-config
     probe-rs-tools
-    rust-analyzer
+    # rust-analyzer
     rustup
 
     # Applications
