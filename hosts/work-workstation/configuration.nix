@@ -70,6 +70,7 @@
 
   # Fish shell
   programs.fish.enable = true;
+  documentation.man.generateCaches = false; # fish causes super slow builds if this is on
   programs.starship.enable = true;
   programs.bash = {
     interactiveShellInit = ''
@@ -121,16 +122,17 @@
     openssl
     pkg-config
     probe-rs-tools
-    # rust-analyzer
+    rust-analyzer
     rustup
 
     # Applications
     chromium
+    element-desktop
     firefox
     mattermost-desktop
+    spotify
     telegram-desktop
     zathura
-    spotify
 
     # Tooling
     kicad
