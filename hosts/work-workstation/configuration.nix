@@ -96,6 +96,7 @@
     nvd
     ripgrep
     sd
+    syncthing
     wget
 
     # WM stuff
@@ -130,6 +131,7 @@
     element-desktop
     firefox
     mattermost-desktop
+    slack
     spotify
     telegram-desktop
     zathura
@@ -141,6 +143,7 @@
   # Make sure helix is used for commands
   environment.variables.SUDO_EDITOR = "hx";
   environment.variables.EDITOR = "hx";
+  environment.variables.TERM = "xterm-256color";
 
   fonts = {
     packages = with pkgs; [
@@ -217,6 +220,9 @@
     jack.enable = true;
   };
 
+  # Syncthing
+  services.syncthing.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -231,8 +237,11 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22000 ];
+  networking.firewall.allowedUDPPorts = [
+    22000
+    21027
+  ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
