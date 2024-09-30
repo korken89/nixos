@@ -133,8 +133,12 @@
     swww
     waybar
     wl-mirror
+    swayidle
     swaylock
     brightnessctl
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard
 
     # Development
     cargo-binutils
@@ -223,7 +227,12 @@
     xwayland.enable = true;
   };
 
+  # Enable the gnome-keyring secrets vault. 
+  # Will be exposed through DBus to programs willing to store secrets.
+  services.gnome.gnome-keyring.enable = true;
+
   security.polkit.enable = true;
+  # security.pam.services.swaylock = {};
 
   environment.sessionVariables = {
     # WLR_NO_HARDWARE_CURSORS = "1";
