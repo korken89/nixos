@@ -23,6 +23,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Enable ssh agent (https://wiki.nixos.org/wiki/SSH_public_key_authentication)
+  services.ssh-agent.enable = true;
+
   # Git
   programs.git = {
     enable = true;
@@ -37,7 +40,7 @@
     aliases = {
       ci = "commit";
       co = "checkout";
-      s = "status";
+      st = "status";
     };
   };
 }
