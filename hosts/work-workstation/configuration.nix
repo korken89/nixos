@@ -92,6 +92,11 @@
   programs.starship.enable = true;
   programs.bash = {
     interactiveShellInit = ''
+      # Start Hyprland automatically on TTY login (https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login)
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        exec ${pkgs.hyprland}/bin/hyprland
+      fi
+
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
       then
         shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
