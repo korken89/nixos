@@ -3,10 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       lib = nixpkgs.lib;
     in
@@ -33,6 +42,17 @@
             modules = [
               ./hosts/work-workstation/configuration.nix
               ./hosts/work-workstation/hardware-configuration.nix
+
+              # make home-manager as a module of nixos
+              # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.emifre = import ./home.nix;
+
+                # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+              }
             ];
           };
       };
