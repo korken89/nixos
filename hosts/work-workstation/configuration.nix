@@ -150,6 +150,7 @@
     element-desktop
     firefox
     mattermost-desktop
+    netbird
     slack
     spotify
     telegram-desktop
@@ -174,6 +175,9 @@
       };
     };
   };
+
+  # Enable netbird daemon
+  services.netbird.enable = true;
 
   # Enable docker
   virtualisation.docker.enable = true;
