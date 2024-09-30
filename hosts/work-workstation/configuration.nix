@@ -64,6 +64,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = with pkgs; [ ];
 
@@ -156,6 +157,9 @@
     # Tooling
     kicad
   ];
+
+  # Enable docker
+  virtualisation.docker.enable = true;
 
   # Make sure helix is used for commands
   environment.variables.SUDO_EDITOR = "hx";
