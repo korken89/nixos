@@ -122,6 +122,7 @@
     dunst
     kitty
     libnotify
+    polkit_gnome
     rofimoji
     rofi-wayland
     swww
@@ -157,6 +158,22 @@
     # Tooling
     kicad
   ];
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # Enable docker
   virtualisation.docker.enable = true;
@@ -194,6 +211,8 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  security.polkit.enable = true;
 
   environment.sessionVariables = {
     # WLR_NO_HARDWARE_CURSORS = "1";
