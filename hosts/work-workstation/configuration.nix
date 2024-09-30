@@ -144,6 +144,7 @@
     probe-rs-tools
     rust-analyzer
     rustup
+    udev
 
     # Applications
     chromium
@@ -158,6 +159,7 @@
 
     # Tooling
     kicad
+    kikit
   ];
 
   systemd = {
