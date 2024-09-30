@@ -267,7 +267,12 @@
   };
 
   # Syncthing
-  services.syncthing.enable = true;
+  services.syncthing = {
+    enable = true;
+    user = "emifre";
+    dataDir = "/home/emifre";
+    configDir = "/home/emifre/.config/syncthing";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -279,10 +284,7 @@
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
+  # Open ports in the firewall (syncthing)
   networking.firewall.allowedTCPPorts = [ 22000 ];
   networking.firewall.allowedUDPPorts = [
     22000
