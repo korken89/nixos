@@ -86,6 +86,9 @@
     settings.PermitRootLogin = "no";
   };
 
+  # Enable ssh agent (https://wiki.nixos.org/wiki/SSH_public_key_authentication)
+  programs.ssh.startAgent = true;
+
   # Fish shell
   programs.fish.enable = true;
   documentation.man.generateCaches = false; # fish causes super slow builds if this is on
