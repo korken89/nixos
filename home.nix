@@ -43,6 +43,11 @@
     targets.alacritty.enable = true;
   };
 
+  # Packages that should be installed to the user profile.
+  home.packages = with pkgs; [
+    btop
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "emifre";
