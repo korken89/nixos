@@ -109,14 +109,17 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Utilities
+    coreutils-full
     curl
     fd
     git
+    gnumake
     helix
     networkmanagerapplet
     nil
     nixfmt-rfc-style
     nvd
+    pigz
     ripgrep
     sd
     syncthing
