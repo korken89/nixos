@@ -1,10 +1,48 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 
 {
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
+
+  stylix = {
+    enable = true;
+    polarity = "dark";
+    image = pkgs.fetchurl {
+      url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
+      sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
+    };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/default-dark.yaml";
+    fonts = {
+      monospace = {
+        name = "Fira Code";
+        package = pkgs.fira-code;
+      };
+      # serif = {
+      #   name = userSettings.font;
+      #   package = userSettings.fontPkg;
+      # };
+      # sansSerif = {
+      #   name = userSettings.font;
+      #   package = userSettings.fontPkg;
+      # };
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-emoji;
+      };
+      sizes = {
+        terminal = 12;
+        applications = 10;
+        popups = 10;
+        desktop = 10;
+      };
+    };
+    targets.alacritty.enable = true;
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "emifre";

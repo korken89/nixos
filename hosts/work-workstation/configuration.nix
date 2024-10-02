@@ -127,6 +127,7 @@
 
     # WM stuff
     alacritty
+    base16-schemes
     dunst
     kitty
     libnotify

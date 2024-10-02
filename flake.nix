@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
@@ -14,6 +15,7 @@
       self,
       nixpkgs,
       home-manager,
+      stylix,
       ...
     }@inputs:
     let
@@ -39,6 +41,7 @@
             };
 
             inherit system;
+
             modules = [
               ./hosts/work-workstation/configuration.nix
               ./hosts/work-workstation/hardware-configuration.nix
@@ -47,6 +50,9 @@
               # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
               home-manager.nixosModules.home-manager
               {
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.emifre = import ./home.nix;
