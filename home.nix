@@ -46,6 +46,9 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     btop
+    zip
+    unzip
+    octave
   ];
 
   # Home Manager needs a bit of information about you and the
