@@ -47,8 +47,12 @@
   home.packages = with pkgs; [
     btop
     zip
+    musl
+    gcc
     unzip
     octave
+    mqttui
+    gimp
   ];
 
   # Home Manager needs a bit of information about you and the
