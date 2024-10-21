@@ -46,13 +46,19 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     btop
-    zip
-    musl
+    cmake
     gcc
-    unzip
-    octave
-    mqttui
+    gcc-arm-embedded
     gimp
+    git
+    mqttui
+    octave
+    okular
+    pkg-config
+    python3
+    unzip
+    usbutils
+    zip
   ];
 
   # Home Manager needs a bit of information about you and the
