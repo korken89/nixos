@@ -293,6 +293,32 @@
     configDir = "/home/emifre/.config/syncthing";
   };
 
+  # udev
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      # DAP
+      ATTRS{product}=="*CMSIS-DAP*", MODE="660", GROUP="plugdev", TAG+="uaccess"
+
+      # STMicroelectronics ST-LINK/V1
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE="660", TAG+="uaccess"
+
+      # STMicroelectronics ST-LINK/V2
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE="660", TAG+="uaccess"
+
+      # STMicroelectronics ST-LINK/V2.1
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", MODE="660", TAG+="uaccess"
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3752", MODE="660", TAG+="uaccess"
+
+      # STMicroelectronics STLINK-V3
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374d", MODE="660", TAG+="uaccess"
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", MODE="660", TAG+="uaccess"
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374f", MODE="660", TAG+="uaccess"
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3753", MODE="660", TAG+="uaccess"
+      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3754", MODE="660", TAG+="uaccess"
+    '';
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
