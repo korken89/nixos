@@ -59,6 +59,36 @@
     unzip
     usbutils
     zip
+
+    # Development
+    cargo-binutils
+    cargo-bloat
+    cargo-expand
+    cargo-watch
+    clang
+    flip-link
+    ltex-ls
+    openssl
+    pkg-config
+    probe-rs-tools
+    rust-analyzer
+    rustup
+    udev
+
+    # Applications
+    chromium
+    element-desktop
+    firefox
+    mattermost-desktop
+    netbird
+    slack
+    spotify
+    telegram-desktop
+    zathura
+
+    # Tooling
+    kicad
+    kikit
   ];
 
   # Home Manager needs a bit of information about you and the

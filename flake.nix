@@ -35,6 +35,7 @@
       };
 
       nixosConfigurations = {
+        # Intel 12900k workstation @ work
         work-workstation =
           let
             system = "x86_64-linux";
@@ -53,35 +54,14 @@
             modules = [
               ./hosts/work-workstation/configuration.nix
               ./hosts/work-workstation/hardware-configuration.nix
-
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.emifre = import ./home.nix;
-                };
-              }
+              ./modules/common.nix
             ];
           };
+        # Lenovo Yoga Slim 7x laptop
         yoga-x7 = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/laptop-yoga-x7/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                extraSpecialArgs = {
-                  inherit inputs;
-                };
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.emifre = import ./home.nix;
-              };
-            }
+            ./modules/common.nix
 
             # Hardware configuration
             x1e-nixos-config.nixosModules.x1e
@@ -94,10 +74,6 @@
                 nixpkgs.pkgs = nixpkgs.legacyPackages.aarch64-linux;
                 nix = {
                   channel.enable = false;
-                  settings.experimental-features = [
-                    "nix-command"
-                    "flakes"
-                  ];
                 };
               }
             )
