@@ -2,14 +2,12 @@
 {
   inputs,
   outputs,
+  pkgs,
   ...
 }:
-let
-  pkgs = inputs.nixpkgs;
-in
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    # inputs.home-manager.nixosModules.home-manager
     # ./acme.nix
     # ./auto-upgrade.nix
     # ./fish.nix
@@ -28,16 +26,7 @@ in
     # ./prometheus-node-exporter.nix
     # ./kdeconnect.nix
     # ./upower.nix
-  ] ++ (builtins.attrValues outputs.nixosModules);
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.emifre = import ./home.nix;
-    home-manager.extraSpecialArgs = {
-      inherit inputs outputs;
-    };
-  };
+  ]; # ++ (builtins.attrValues outputs.nixosModules);
 
   environment.systemPackages = with pkgs; [
     # Utilities
@@ -75,7 +64,6 @@ in
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard
-
   ];
 
   # Set your time zone.
@@ -177,7 +165,7 @@ in
       fira-code
       fira-code-symbols
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       font-awesome
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -221,7 +209,7 @@ in
     enable = true;
     extraRules = ''
       # DAP
-      ATTRS{product}=="*CMSIS-DAP*", MODE="660", GROUP="plugdev", TAG+="uaccess"
+      ATTRS{product}=="*CMSIS-DAP*", MODE="660", TAG+="uaccess"
 
       # STMicroelectronics ST-LINK/V1
       ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE="660", TAG+="uaccess"

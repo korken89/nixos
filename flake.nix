@@ -55,13 +55,33 @@
               ./hosts/work-workstation/configuration.nix
               ./hosts/work-workstation/hardware-configuration.nix
               ./modules/common.nix
+
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.emifre = import ./home.nix;
+              }
             ];
           };
         # Lenovo Yoga Slim 7x laptop
         yoga-x7 = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hosts/laptop-yoga-x7/configuration.nix
+            ./hosts/laptop-yoga-7x/configuration.nix
             ./modules/common.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.emifre = import ./home.nix;
+            }
 
             # Hardware configuration
             x1e-nixos-config.nixosModules.x1e
@@ -72,12 +92,12 @@
                 hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
 
                 nixpkgs.pkgs = nixpkgs.legacyPackages.aarch64-linux;
+
                 nix = {
                   channel.enable = false;
                 };
               }
             )
-            ./configuration.nix
           ];
         };
       };
