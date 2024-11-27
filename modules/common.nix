@@ -66,6 +66,20 @@
     wl-clipboard
   ];
 
+  # libinput
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      disableWhileTyping = true;
+      middleEmulation = true;
+      tapping = true;
+
+      additionalOptions = ''
+        Option "PalmDetection" "on"
+      '';
+    };
+  };
+
   # Wireshark
   programs.wireshark.enable = true;
 
