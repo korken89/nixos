@@ -41,6 +41,7 @@
       };
     };
     targets.alacritty.enable = true;
+    targets.gtk.enable = true;
   };
 
   # Packages that should be installed to the user profile.
@@ -58,9 +59,15 @@
     python3
     unzip
     usbutils
+    xchm
+    gsettings-desktop-schemas
+    file
+    xxd
     zip
 
     # Development
+    autoconf
+    automake
     cargo-binutils
     cargo-bloat
     cargo-expand
@@ -72,7 +79,9 @@
     probe-rs-tools
     # rust-analyzer
     rustup
+    sdcc
     udev
+    usbtop
 
     # Applications
     chromium
@@ -80,9 +89,13 @@
     firefox
     mattermost-desktop
     netbird
+    pulseview
+    sigrok-firmware-fx2lafw
+    sigrok-cli
     # slack
     spotify
     telegram-desktop
+    vlc
     zathura
 
     # Tooling
@@ -95,6 +108,18 @@
     csxcad
     python312Packages.python-csxcad
   ];
+
+  gtk.enable = true;
+  gtk.iconTheme = {
+    package = pkgs.papirus-icon-theme;
+    name = "Papirus-Dark";
+  };
+
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+  programs.command-not-found.enable = false;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

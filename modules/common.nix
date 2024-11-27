@@ -45,6 +45,7 @@
     sd
     syncthing
     wget
+    wireshark
 
     # WM stuff
     alacritty
@@ -58,12 +59,29 @@
     waybar
     wl-mirror
     swayidle
-    swaylock
+    swaylock-effects
     brightnessctl
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard
   ];
+
+  # Wireshark
+  programs.wireshark.enable = true;
+
+  #
+  # File manager
+  #
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  programs.xfconf.enable = true;
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
@@ -88,10 +106,11 @@
     isNormalUser = true;
     description = "Emil Fresk";
     extraGroups = [
-      "networkmanager"
-      "wheel"
       "docker"
+      "networkmanager"
       "plugdev"
+      "wheel"
+      "wireshark"
     ];
 
     openssh.authorizedKeys.keys = [
@@ -207,6 +226,19 @@
   services.udev = {
     enable = true;
     extraRules = ''
+      SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+
+      # sigrok FX2 LA (8ch)
+      # fx2grok-flat (before and after renumeration)
+      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608c", MODE="660", GROUP="users", TAG+="uaccess"
+
+      # sigrok FX2 LA (16ch)
+      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608d", MODE="660", GROUP="users", TAG+="uaccess"
+
+      # Cypress FX2 eval boards without EEPROM:
+      # fx2grok-tiny
+      ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="8613", MODE="660", GROUP="users", TAG+="uaccess"
+
       # DAP
       ATTRS{product}=="*CMSIS-DAP*", MODE="660", TAG+="uaccess"
 
