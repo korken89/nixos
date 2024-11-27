@@ -36,7 +36,7 @@
 
       nixosConfigurations = {
         # Intel 12900k workstation @ work
-        work-workstation =
+        emifre-work-workstation =
           let
             system = "x86_64-linux";
           in
