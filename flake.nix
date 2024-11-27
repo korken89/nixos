@@ -68,7 +68,7 @@
             ];
           };
         # Lenovo Yoga Slim 7x laptop
-        yoga-7x = nixpkgs.lib.nixosSystem {
+        emifre-yoga-7x-nixos = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/laptop-yoga-7x/configuration.nix
             ./modules/common.nix

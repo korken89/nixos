@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-pushd /etc/nixos
-sudoedit configuration.nix
+pushd /home/emifre/.config/nixos
+hx flake.nix
 
 git diff -U0 *.nix
 
 echo "NixOS Rebuilding..."
-sudo nixos-rebuild switch &>/tmp/nixos-switch.log || (
+sudo nixos-rebuild switch --flake ~/.config/nixos/. &>/tmp/nixos-switch.log || (
  cat /tmp/nixos-switch.log | grep --color error && false)
 gen=$(nixos-rebuild list-generations | grep current)
 git commit -am "$gen"

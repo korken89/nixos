@@ -52,6 +52,7 @@
     gcc-arm-embedded
     gimp
     git
+    # libreoffice-fresh
     mqttui
     octave
     okular
