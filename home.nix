@@ -81,13 +81,19 @@
     mattermost-desktop
     netbird
     # slack
-    # spotify
+    spotify
     telegram-desktop
     zathura
 
     # Tooling
     kicad
     kikit
+
+    # OpenEMS tooling
+    openems
+    python312Packages.python-openems
+    csxcad
+    python312Packages.python-csxcad
   ];
 
   # Home Manager needs a bit of information about you and the

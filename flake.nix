@@ -68,7 +68,7 @@
             ];
           };
         # Lenovo Yoga Slim 7x laptop
-        yoga-x7 = nixpkgs.lib.nixosSystem {
+        yoga-7x = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/laptop-yoga-7x/configuration.nix
             ./modules/common.nix
@@ -85,19 +85,22 @@
 
             # Hardware configuration
             x1e-nixos-config.nixosModules.x1e
-            (
-              { ... }:
-              {
-                networking.hostName = "emifre-yoga-7x-nixos";
-                hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
+            {
+              networking.hostName = "emifre-yoga-7x-nixos";
+              hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
 
-                nixpkgs.pkgs = nixpkgs.legacyPackages.aarch64-linux;
+              nixpkgs.hostPlatform.system = "aarch64-linux";
 
-                nix = {
-                  channel.enable = false;
-                };
-              }
-            )
+              # Uncomment this to allow unfree packages.
+              nixpkgs.config = {
+                allowUnfree = true;
+                allowUnsupportedSystem = true; # Until openems in release on nixpkgs
+              };
+
+              nix = {
+                channel.enable = false;
+              };
+            }
           ];
         };
       };
