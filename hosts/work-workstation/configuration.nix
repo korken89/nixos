@@ -3,8 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -29,7 +27,7 @@
   #   };
   # };
 
-  networking.hostName = "emifre-workstation"; # Define your hostname.
+  networking.hostName = "emifre-work-workstation"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -55,31 +53,4 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
-  # Syncthing
-  services.syncthing = {
-    enable = true;
-    user = "emifre";
-    dataDir = "/home/emifre";
-    configDir = "/home/emifre/.config/syncthing";
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Open ports in the firewall (syncthing)
-  networking.firewall.allowedTCPPorts = [ 22000 ];
-  networking.firewall.allowedUDPPorts = [
-    22000
-    21027
-  ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 }

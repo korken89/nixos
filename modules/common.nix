@@ -236,6 +236,15 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  # Syncthing
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = "emifre";
+    dataDir = "/home/emifre";
+    configDir = "/home/emifre/.config/syncthing";
+  };
+
   # udev
   services.udev = {
     enable = true;
