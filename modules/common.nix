@@ -118,6 +118,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.emifre = {
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "Emil Fresk";
     extraGroups = [
@@ -148,23 +149,16 @@
   };
 
   # Fish shell
-  programs.fish.enable = true;
-  documentation.man.generateCaches = false; # fish causes super slow builds if this is on
-  programs.starship.enable = true;
-  programs.bash = {
+  programs.fish = {
+    enable = true;
     interactiveShellInit = ''
-      # Start Hyprland automatically on TTY login (https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login)
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      if test -z "$WAYLAND_DISPLAY" && test "$XDG_VTNR" -eq 1
         exec ${pkgs.hyprland}/bin/Hyprland
-      fi
-
-      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-      then
-        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-      fi
+      end
     '';
   };
+  documentation.man.generateCaches = false; # fish causes super slow builds if this is on
+  programs.starship.enable = true;
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
