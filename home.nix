@@ -54,7 +54,7 @@
     git
     # libreoffice-fresh
     mqttui
-    octave
+    octaveFull
     okular
     pkg-config
     python3
