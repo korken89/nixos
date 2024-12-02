@@ -107,8 +107,15 @@
     openems
     python312Packages.python-openems
     csxcad
+    appcsxcad
     python312Packages.python-csxcad
   ];
+
+  # Configure openEMS to octave
+  home.file.".octaverc".text = ''
+    addpath ('${pkgs.openems}/share/openEMS/matlab', '-begin');
+    addpath ('${pkgs.csxcad}/share/CSXCAD/matlab', '-begin');
+  '';
 
   gtk.enable = true;
   gtk.iconTheme = {
