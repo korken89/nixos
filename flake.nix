@@ -46,6 +46,16 @@
               pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
+                overlays = [
+                  (final: prev: {
+                    appcsxcad = prev.appcsxcad.overrideAttrs (old: {
+                      postFixup = "";
+                      patches = (old.patches or [ ]) ++ [
+                        ./overlays/appcsxcad-wayland.patch
+                      ];
+                    });
+                  })
+                ];
               };
             };
 

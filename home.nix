@@ -104,11 +104,10 @@
     kikit
 
     # OpenEMS tooling
-    openems
-    python312Packages.python-openems
-    csxcad
     appcsxcad
-    python312Packages.python-csxcad
+    csxcad
+    openems
+    paraview
   ];
 
   # Configure openEMS to octave

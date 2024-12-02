@@ -1,0 +1,23 @@
+From 433b803851b8365553e569fe7e310af0c1df91ec Mon Sep 17 00:00:00 2001
+From: Emil Fresk <emil.fresk@kiteshield.com>
+Date: Mon, 2 Dec 2024 13:01:10 +0100
+Subject: Wayload fix
+
+---
+ AppCSXCAD.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/AppCSXCAD.sh b/AppCSXCAD.sh
+index 07ede64..bc817de 100755
+--- a/AppCSXCAD.sh
++++ b/AppCSXCAD.sh
+@@ -11,5 +11,6 @@ export LD_LIBRARY_PATH=
+ # vtkXOpenGLRenderWindow (0xbe2980): Could not find a decent visual
+ # you need to uncomment the next line:
+ # export LIBGL_ALWAYS_INDIRECT=y
++export QT_QPA_PLATFORM="xcb"
+ 
+ $BIN_PATH/AppCSXCAD $@
+-- 
+2.47.0
+
