@@ -153,7 +153,7 @@
   programs.git = {
     enable = true;
     userName = "Emil Fresk";
-    userEmail = "emil.fresk@gmail.com";
+    # userEmail = "emil.fresk@gmail.com";
 
     difftastic = {
       enable = true;
