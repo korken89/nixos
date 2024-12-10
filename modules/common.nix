@@ -195,7 +195,7 @@
       noto-fonts-cjk-sans
       noto-fonts-emoji
       font-awesome
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      nerd-fonts.fira-code
     ];
 
     fontconfig = {
