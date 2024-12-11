@@ -37,6 +37,7 @@
     git
     gnumake
     helix
+    keychain
     networkmanagerapplet
     nil
     nixfmt-rfc-style
@@ -139,6 +140,8 @@
     ];
   };
 
+  programs.ssh.startAgent = true;
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -154,6 +157,17 @@
     interactiveShellInit = ''
       if test -z "$WAYLAND_DISPLAY" && test "$XDG_VTNR" -eq 1
         exec ${pkgs.hyprland}/bin/Hyprland
+      end
+
+      if status --is-interactive
+          keychain --quiet --agents ssh
+      end
+
+      begin
+          set -l HOSTNAME (hostname)
+          if test -f ~/.keychain/$HOSTNAME-fish
+              source ~/.keychain/$HOSTNAME-fish
+          end
       end
     '';
   };
@@ -219,7 +233,7 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # Enable the gnome-keyring secrets vault. 
+  # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
