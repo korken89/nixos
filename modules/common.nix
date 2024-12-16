@@ -31,6 +31,7 @@
 
   environment.systemPackages = with pkgs; [
     # Utilities
+    blueman
     coreutils-full
     curl
     fd
