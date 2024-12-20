@@ -102,6 +102,7 @@
     # Tooling
     kicad
     kikit
+    tio # TUI serial console
 
     # OpenEMS tooling
     appcsxcad

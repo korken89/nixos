@@ -8,6 +8,7 @@
 {
 
   imports = [
+    inputs.probe-rs-rules.nixosModules.${pkgs.system}.default
     # inputs.home-manager.nixosModules.home-manager
     # ./acme.nix
     # ./auto-upgrade.nix
@@ -263,36 +264,17 @@
 
       # sigrok FX2 LA (8ch)
       # fx2grok-flat (before and after renumeration)
-      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608c", MODE="660", GROUP="users", TAG+="uaccess"
+      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608c", TAG+="uaccess"
 
       # sigrok FX2 LA (16ch)
-      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608d", MODE="660", GROUP="users", TAG+="uaccess"
+      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608d", TAG+="uaccess"
 
       # Cypress FX2 eval boards without EEPROM:
       # fx2grok-tiny
-      ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="8613", MODE="660", GROUP="users", TAG+="uaccess"
-
-      # DAP
-      ATTRS{product}=="*CMSIS-DAP*", MODE="660", TAG+="uaccess"
-
-      # STMicroelectronics ST-LINK/V1
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", MODE="660", TAG+="uaccess"
-
-      # STMicroelectronics ST-LINK/V2
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE="660", TAG+="uaccess"
-
-      # STMicroelectronics ST-LINK/V2.1
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", MODE="660", TAG+="uaccess"
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3752", MODE="660", TAG+="uaccess"
-
-      # STMicroelectronics STLINK-V3
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374d", MODE="660", TAG+="uaccess"
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", MODE="660", TAG+="uaccess"
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374f", MODE="660", TAG+="uaccess"
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3753", MODE="660", TAG+="uaccess"
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3754", MODE="660", TAG+="uaccess"
+      ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="8613", TAG+="uaccess"
     '';
   };
+  hardware.probe-rs.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

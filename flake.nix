@@ -15,6 +15,8 @@
       url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    probe-rs-rules.url = "github:jneem/probe-rs-rules";
   };
 
   outputs =
