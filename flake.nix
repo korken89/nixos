@@ -9,14 +9,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     x1e-nixos-config = {
       url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    probe-rs-rules.url = "github:jneem/probe-rs-rules";
+    probe-rs-rules = {
+      url = "github:jneem/probe-rs-rules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

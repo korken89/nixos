@@ -33,26 +33,8 @@
   # See: https://docs.kernel.org/admin-guide/sysrq.html
   boot.kernel.sysctl."kernel.sysrq" = 80;
 
-  users.users.emifre = {
-    isNormalUser = true;
-    description = "Emil Fresk";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
-
-  security.sudo.wheelNeedsPassword = false;
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-  ];
-
-  networking.networkmanager = {
-    enable = true;
-    plugins = lib.mkForce [ ];
-  };
-
+  networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+  services.dbus.enable = true;
 }

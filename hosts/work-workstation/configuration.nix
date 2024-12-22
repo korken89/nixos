@@ -15,18 +15,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # # Overlays
-  # nixpkgs = {
-  #   config = {
-  #     allowUnfree = true;
-  #     packageOverrides = pkgs: {
-  #       unstable =
-  #         import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz")
-  #           { };
-  #     };
-  #   };
-  # };
-
   networking.hostName = "emifre-work-workstation"; # Define your hostname.
 
   # Enable networking
