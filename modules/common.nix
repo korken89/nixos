@@ -162,7 +162,7 @@
       end
 
       if status --is-interactive
-          keychain --quiet --agents ssh
+          keychain --eval --quiet -Q id_ed25519 | source
       end
 
       begin
