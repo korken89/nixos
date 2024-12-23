@@ -88,6 +88,7 @@
     chromium
     element-desktop
     firefox
+    inkscape
     mattermost-desktop
     netbird
     pulseview
