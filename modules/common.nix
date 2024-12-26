@@ -8,7 +8,6 @@
 {
 
   imports = [
-    inputs.probe-rs-rules.nixosModules.${pkgs.system}.default
     # inputs.home-manager.nixosModules.home-manager
     # ./acme.nix
     # ./auto-upgrade.nix

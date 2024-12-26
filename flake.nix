@@ -30,6 +30,7 @@
       self,
       nixpkgs,
       home-manager,
+      probe-rs-rules,
       stylix,
       x1e-nixos-config,
       ...
@@ -74,6 +75,8 @@
               ./hosts/work-workstation/hardware-configuration.nix
               ./modules/common.nix
 
+              # Why cant prprobe-rs-rules and home-manager be in common.nix?
+              probe-rs-rules.nixosModules.${system}.default
               home-manager.nixosModules.home-manager
               {
                 home-manager.extraSpecialArgs = {
@@ -86,41 +89,47 @@
             ];
           };
         # Lenovo Yoga Slim 7x laptop
-        emifre-yoga-7x-nixos = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/laptop-yoga-7x/configuration.nix
-            ./modules/common.nix
+        emifre-yoga-7x-nixos =
+          let
+            system = "aarch64-linux";
+          in
+          nixpkgs.lib.nixosSystem {
+            modules = [
+              ./hosts/laptop-yoga-7x/configuration.nix
+              ./modules/common.nix
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.emifre = import ./home.nix;
-            }
+              # Why cant prprobe-rs-rules and home-manager be in common.nix?
+              probe-rs-rules.nixosModules.${system}.default
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.emifre = import ./home.nix;
+              }
 
-            # Hardware configuration
-            x1e-nixos-config.nixosModules.x1e
-            {
-              networking.hostName = "emifre-yoga-7x-nixos";
-              hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
+              # Hardware configuration
+              x1e-nixos-config.nixosModules.x1e
+              {
+                networking.hostName = "emifre-yoga-7x-nixos";
+                hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
 
-              nixpkgs.hostPlatform.system = "aarch64-linux";
+                nixpkgs.hostPlatform.system = "aarch64-linux";
 
-              # Uncomment this to allow unfree packages.
-              nixpkgs.config = {
-                allowUnfree = true;
-                allowUnsupportedSystem = true; # Until openems in release on nixpkgs
-              };
+                # Uncomment this to allow unfree packages.
+                nixpkgs.config = {
+                  allowUnfree = true;
+                  allowUnsupportedSystem = true; # Until openems in release on nixpkgs
+                };
 
-              nix = {
-                channel.enable = false;
-              };
-            }
-          ];
-        };
+                nix = {
+                  channel.enable = false;
+                };
+              }
+            ];
+          };
       };
     };
 }
