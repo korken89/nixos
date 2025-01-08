@@ -97,10 +97,12 @@
     # slack
     spotify
     telegram-desktop
+    tokei
     vlc
     zathura
 
     # Tooling
+    freecad
     kicad
     kikit
     tio # TUI serial console
