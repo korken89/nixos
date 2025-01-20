@@ -84,6 +84,11 @@
     };
   };
 
+  programs.ydotool = {
+    enable = true;
+    group = "wheel";
+  };
+
   # Wireshark
   programs.wireshark.enable = true;
 
