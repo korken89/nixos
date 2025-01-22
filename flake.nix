@@ -124,6 +124,16 @@
                   allowUnsupportedSystem = true; # Until openems in release on nixpkgs
                 };
 
+                nixpkgs.overlays = [
+                  (final: prev: {
+                    appcsxcad = prev.appcsxcad.overrideAttrs (old: {
+                      postFixup = "";
+                      patches = (old.patches or [ ]) ++ [
+                        ./overlays/appcsxcad-wayland.patch
+                      ];
+                    });
+                  })
+                ];
                 nix = {
                   channel.enable = false;
                 };
