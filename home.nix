@@ -101,6 +101,11 @@
     vlc
     zathura
 
+    # Writing
+    tinymist
+    typst
+    typstyle
+
     # Tooling
     freecad
     kicad
