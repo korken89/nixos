@@ -36,7 +36,6 @@
     curl
     fd
     fzf
-    git
     gnumake
     helix
     keychain

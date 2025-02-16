@@ -166,6 +166,14 @@
     userName = "Emil Fresk";
     # userEmail = "emil.fresk@gmail.com";
 
+    extraConfig = {
+      pull.rebase = true;
+      fetch = {
+        prune = true;
+        all = true;
+      };
+    };
+
     difftastic = {
       enable = true;
       color = "always";
@@ -175,6 +183,7 @@
       ci = "commit";
       co = "checkout";
       st = "status";
+      l = "log --all --graph --oneline";
     };
   };
 }
