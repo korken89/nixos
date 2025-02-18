@@ -172,6 +172,11 @@
         prune = true;
         all = true;
       };
+
+      diff = {
+        colorMoved = true;
+        colorMovedWS = "allow-indentation-change";
+      };
     };
 
     difftastic = {
