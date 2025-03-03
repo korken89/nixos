@@ -55,7 +55,7 @@
     # libreoffice-fresh
     mqttui
     octaveFull
-    okular
+    kdePackages.okular
     pkg-config
     python3
     unzip
