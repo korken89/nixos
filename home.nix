@@ -189,6 +189,7 @@
       co = "checkout";
       st = "status";
       l = "log --all --graph --oneline";
+      rl = "!git log --all --graph --oneline --decorate=on --color | tac";
     };
   };
 }
