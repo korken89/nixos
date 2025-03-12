@@ -52,10 +52,17 @@
           lib.nixosSystem {
             specialArgs = {
               inherit inputs;
-              pkgs = import nixpkgs {
-                inherit system;
-                config.allowUnfree = true;
-                overlays = [
+            };
+
+            inherit system;
+
+            modules = [
+              ./hosts/work-workstation/configuration.nix
+              ./hosts/work-workstation/hardware-configuration.nix
+              ./modules/common.nix
+
+              {
+                nixpkgs.overlays = [
                   (final: prev: {
                     appcsxcad = prev.appcsxcad.overrideAttrs (old: {
                       postFixup = "";
@@ -65,15 +72,7 @@
                     });
                   })
                 ];
-              };
-            };
-
-            inherit system;
-
-            modules = [
-              ./hosts/work-workstation/configuration.nix
-              ./hosts/work-workstation/hardware-configuration.nix
-              ./modules/common.nix
+              }
 
               # Why cant prprobe-rs-rules and home-manager be in common.nix?
               probe-rs-rules.nixosModules.${system}.default
