@@ -3,6 +3,7 @@
   inputs,
   outputs,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -162,7 +163,7 @@
     enable = true;
     interactiveShellInit = ''
       if test -z "$WAYLAND_DISPLAY" && test "$XDG_VTNR" -eq 1
-        exec ${pkgs.hyprland}/bin/Hyprland
+        exec ${pkgs.niri}/bin/niri-session
       end
 
       if status --is-interactive
@@ -232,6 +233,13 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+  };
+  programs.xwayland.enable = lib.mkForce true;
+
+  # Enable Niri
+  programs.niri = {
+    enable = true;
+    # xwayland.enable = true;
   };
 
   xdg.portal = {
