@@ -109,7 +109,6 @@
     # Tooling
     freecad
     kicad
-    kikit
     obsidian
     stm32cubemx
     tio # TUI serial console
