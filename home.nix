@@ -48,21 +48,23 @@
   home.packages = with pkgs; [
     btop
     cmake
+    file
     gcc
     gcc-arm-embedded
     gimp
     git
+    gsettings-desktop-schemas
+    helvum
+    kdePackages.okular
     # libreoffice-fresh
     mqttui
     octaveFull
-    kdePackages.okular
+    pavucontrol
     pkg-config
     python3
     unzip
     usbutils
     xchm
-    gsettings-desktop-schemas
-    file
     xxd
     zip
 
@@ -92,6 +94,7 @@
     mattermost-desktop
     netbird
     pulseview
+    signal-desktop
     sigrok-firmware-fx2lafw
     sigrok-cli
     # slack
@@ -109,6 +112,7 @@
     # Tooling
     freecad
     kicad
+    mumble
     obsidian
     stm32cubemx
     tio # TUI serial console
