@@ -42,7 +42,7 @@
     keychain
     networkmanagerapplet
     nil
-    nixfmt-rfc-style
+    nixfmt-tree
     nvd
     pigz
     ripgrep
