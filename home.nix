@@ -57,11 +57,13 @@
     helvum
     kdePackages.okular
     # libreoffice-fresh
+    markdown-oxide
     mqttui
     octaveFull
     pavucontrol
     pkg-config
     python3
+    tmux
     unzip
     usbutils
     xchm
