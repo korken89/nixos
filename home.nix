@@ -48,6 +48,7 @@
   home.packages = with pkgs; [
     btop
     cmake
+    eza
     file
     gcc
     gcc-arm-embedded
