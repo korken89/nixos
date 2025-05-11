@@ -56,6 +56,7 @@
     git
     gsettings-desktop-schemas
     helvum
+    jujutsu
     kdePackages.okular
     # libreoffice-fresh
     markdown-oxide
