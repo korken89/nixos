@@ -11,7 +11,7 @@ let
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd --type d --hidden '^\.git$' ~/Git ~/Work -x dirname | sed "s|^$HOME|~|" | sort | fzf)
+    selected=$(fd --type d --hidden '^\.git$' ~/Git ~/Work -x dirname | sed "s|^$HOME|~|" | sort | fzf | sed "s|^~|$HOME|")
 fi
 
 if [[ -z $selected ]]; then
