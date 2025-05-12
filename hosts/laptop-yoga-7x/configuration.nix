@@ -1,6 +1,26 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
+  imports = [
+    # Hardware configuration
+    inputs.x1e-nixos-config.nixosModules.x1e
+    {
+      networking.hostName = "emifre-yoga-7x-nixos";
+      hardware.lenovo-yoga-slim7x.enable = true;
+
+      nixpkgs.hostPlatform.system = "aarch64-linux";
+
+      nix = {
+        channel.enable = false;
+      };
+    }
+  ];
+
   boot.loader.systemd-boot = {
     enable = true;
 
@@ -33,8 +53,4 @@
   # See: https://docs.kernel.org/admin-guide/sysrq.html
   boot.kernel.sysctl."kernel.sysrq" = 80;
 
-  networking.networkmanager.enable = true;
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  services.dbus.enable = true;
 }

@@ -23,6 +23,13 @@
       url = "github:jneem/probe-rs-rules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.niri-stable.follows = "niri-stable";
+    };
+    niri-stable.url = "github:YaLTeR/niri/v25.02";
   };
 
   outputs =
@@ -36,12 +43,31 @@
       ...
     }@inputs:
     let
+      inherit (self) inputs outputs;
       lib = nixpkgs.lib;
+
+      # overlays = builtins.attrValues (import ./overlays { inherit inputs outputs; });
+
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (
+        system:
+        import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          # overlays = overlays;
+        }
+      );
     in
     {
       specialArgs = {
         inherit inputs;
       };
+
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
       nixosConfigurations = {
         # Intel 12900k workstation @ work
@@ -51,7 +77,7 @@
           in
           lib.nixosSystem {
             specialArgs = {
-              inherit inputs;
+              inherit inputs system;
             };
 
             inherit system;
@@ -59,32 +85,7 @@
             modules = [
               ./hosts/work-workstation/configuration.nix
               ./hosts/work-workstation/hardware-configuration.nix
-              ./modules/common.nix
-
-              {
-                nixpkgs.overlays = [
-                  (final: prev: {
-                    appcsxcad = prev.appcsxcad.overrideAttrs (old: {
-                      postFixup = "";
-                      patches = (old.patches or [ ]) ++ [
-                        ./overlays/appcsxcad-wayland.patch
-                      ];
-                    });
-                  })
-                ];
-              }
-
-              # Why cant prprobe-rs-rules and home-manager be in common.nix?
-              probe-rs-rules.nixosModules.${system}.default
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.extraSpecialArgs = {
-                  inherit inputs;
-                };
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.emifre = import ./home.nix;
-              }
+              ./nixos
             ];
           };
         # Lenovo Yoga Slim 7x laptop
@@ -93,50 +94,13 @@
             system = "aarch64-linux";
           in
           nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+
             modules = [
               ./hosts/laptop-yoga-7x/configuration.nix
-              ./modules/common.nix
-
-              # Why cant prprobe-rs-rules and home-manager be in common.nix?
-              probe-rs-rules.nixosModules.${system}.default
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.extraSpecialArgs = {
-                  inherit inputs;
-                };
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.emifre = import ./home.nix;
-              }
-
-              # Hardware configuration
-              x1e-nixos-config.nixosModules.x1e
-              {
-                networking.hostName = "emifre-yoga-7x-nixos";
-                hardware.lenovo-yoga-slim7x.enable = true;
-
-                nixpkgs.hostPlatform.system = "aarch64-linux";
-
-                # Uncomment this to allow unfree packages.
-                nixpkgs.config = {
-                  allowUnfree = true;
-                  allowUnsupportedSystem = true; # Until openems in release on nixpkgs
-                };
-
-                nixpkgs.overlays = [
-                  (final: prev: {
-                    appcsxcad = prev.appcsxcad.overrideAttrs (old: {
-                      postFixup = "";
-                      patches = (old.patches or [ ]) ++ [
-                        ./overlays/appcsxcad-wayland.patch
-                      ];
-                    });
-                  })
-                ];
-                nix = {
-                  channel.enable = false;
-                };
-              }
+              ./nixos
             ];
           };
       };

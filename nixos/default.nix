@@ -4,95 +4,40 @@
   outputs,
   pkgs,
   lib,
+  system,
   ...
 }:
-let
-  tmux-sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
-    if [[ $# -eq 1 ]]; then
-        selected=$1
-    else
-        selected=$(fd --type d --hidden '^\.git$' ~/Git ~/Work -x dirname | sed "s|^$HOME|~|" | sort | fzf | sed "s|^~|$HOME|")
-    fi
-
-    if [[ -z $selected ]]; then
-        exit 0
-    fi
-
-    selected_name=$(basename "$selected" | tr . _)
-    tmux_running=$(pgrep tmux)
-
-    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-        tmux new-session -s $selected_name -c $selected
-        exit 0
-    fi
-
-    if ! tmux has-session -t=$selected_name 2> /dev/null; then
-        tmux new-session -ds $selected_name -c $selected
-    fi
-
-    if [[ -z $TMUX ]]; then
-        tmux attach -t $selected_name
-    else
-        tmux switch-client -t $selected_name
-    fi
-  '';
-in
 {
-
   imports = [
-    # inputs.home-manager.nixosModules.home-manager
-    # ./acme.nix
-    # ./auto-upgrade.nix
-    # ./fish.nix
-    # ./locale.nix
-    # ./nix.nix
-    # ./openssh.nix
-    # ./optin-persistence.nix
-    # ./podman.nix
-    # ./sops.nix
-    # ./ssh-serve-store.nix
-    # ./steam-hardware.nix
-    # ./systemd-initrd.nix
-    # ./tailscale.nix
-    # ./gamemode.nix
-    # ./nix-ld.nix
-    # ./prometheus-node-exporter.nix
-    # ./kdeconnect.nix
-    # ./upower.nix
-  ]; # ++ (builtins.attrValues outputs.nixosModules);
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager.extraSpecialArgs = {
+        inherit inputs system;
+      };
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.emifre = import ../home;
+    }
+    inputs.probe-rs-rules.nixosModules.${system}.default
+
+    ./wm.nix
+  ];
 
   environment.systemPackages = with pkgs; [
     # Utilities
     blueman
-    coreutils-full
-    curl
-    fd
-    fzf
-    gnumake
-    helix
     keychain
     networkmanagerapplet
-    nil
-    nixfmt-tree
-    nvd
-    pigz
-    ripgrep
-    sd
     syncthing
-    tmux-sessionizer
-    wget
-    wireshark
 
     # WM stuff
     alacritty
-    base16-schemes
-    dunst
     libnotify
     polkit_gnome
+    dunst
     rofimoji
     rofi-wayland
     swww
-    waybar
     wl-mirror
     swayidle
     swaylock-effects
@@ -162,6 +107,7 @@ in
     isNormalUser = true;
     description = "Emil Fresk";
     extraGroups = [
+      "audio"
       "docker"
       "networkmanager"
       "plugdev"
@@ -282,34 +228,30 @@ in
     };
   };
 
-  # Enable hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  programs.xwayland.enable = lib.mkForce true;
-
-  # Enable Niri
-  programs.niri = {
-    enable = true;
-    # xwayland.enable = true;
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
   # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
   security.polkit.enable = true;
   # security.pam.services.swaylock = {};
+  services.dbus.enable = true;
 
-  environment.sessionVariables = {
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
+  # Networking
+  networking.networkmanager.enable = true;
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
+  # Enable sound with pipewire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   # Syncthing
@@ -329,6 +271,8 @@ in
   hardware.probe-rs.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
