@@ -217,7 +217,7 @@ in
           command ls --color=auto $argv
         end
       end
-      
+
       function ll -d 'alias ls -l'
         ls -l $argv
       end
@@ -225,7 +225,7 @@ in
       function lt
         ls -l --tree $argv
       end
-      
+
       function la -d 'alias ls -la'
         ls -la $argv
       end
@@ -324,20 +324,7 @@ in
   # udev
   services.udev = {
     enable = true;
-    extraRules = ''
-      SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
-
-      # sigrok FX2 LA (8ch)
-      # fx2grok-flat (before and after renumeration)
-      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608c", TAG+="uaccess"
-
-      # sigrok FX2 LA (16ch)
-      ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608d", TAG+="uaccess"
-
-      # Cypress FX2 eval boards without EEPROM:
-      # fx2grok-tiny
-      ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="8613", TAG+="uaccess"
-    '';
+    packages = with pkgs; [ libsigrok ];
   };
   hardware.probe-rs.enable = true;
 
