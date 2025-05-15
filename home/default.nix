@@ -12,6 +12,7 @@ in
     ./git.nix
     ./helix.nix
     ./openems.nix
+    ./screens.nix
     ./stylix.nix
     ./tmux.nix
     ./waybar.nix
@@ -103,6 +104,7 @@ in
     ]
     ++ lib.optionals (system == "x86_64-linux") [
       spotify
+      slack
     ];
 
   gtk = {
