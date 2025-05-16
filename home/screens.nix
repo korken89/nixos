@@ -10,6 +10,7 @@
     kanshi = {
       enable = true;
       settings = [
+        # Work screens
         {
           profile = {
             name = "work";
@@ -28,18 +29,53 @@
             ];
           };
         }
-        # TODO: {
-        #   profile = {
-        #     name = "home";
-        #     outputs = [
-        #       {
-        #         criteria = "...";
-        #         mode = "2560x1440";
-        #         position = "0,0";
-        #       }
-        #     ];
-        #   };
-        # }
+
+        # Yoga 7x laptop
+        {
+          output = {
+            criteria = "eDP-1";
+            scale = 1.5;
+            alias = "yoga_laptop";
+          };
+        }
+
+        # 42" LG OLED TV screen
+        {
+          output = {
+            criteria = "LG Electronics LG TV SSCR2 0x01010101";
+            mode = "3840x2160@60.000";
+            position = "0,0";
+            alias = "home_lg_tv";
+          };
+        }
+
+        # Yoga 7x laptop docking
+        {
+          profile = {
+            name = "undocked";
+            outputs = [
+              {
+                criteria = "eDP-1";
+                status = "enable";
+              }
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "home_large_docked";
+            outputs = [
+              {
+                criteria = "$yoga_laptop";
+                status = "disable";
+              }
+              {
+                criteria = "$home_lg_tv";
+                status = "enable";
+              }
+            ];
+          };
+        }
       ];
     };
   };
