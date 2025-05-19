@@ -17,6 +17,7 @@ in
     ./tmux.nix
     ./waybar.nix
     ./wm.nix
+    ./zoxide.nix
   ];
 
   # Packages that should be installed to the user profile.
