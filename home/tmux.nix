@@ -39,6 +39,7 @@ in
 {
   home.packages = [
     tmux-sessionizer
+    pkgs.tmux
   ];
 
   xdg.configFile."tmux/tmux.conf".source = ../dotfiles/tmux/tmux.conf;
