@@ -210,6 +210,7 @@
 
   fonts = {
     packages = with pkgs; [
+      corefonts # Microsoft fonts
       fira-code
       fira-code-symbols
       noto-fonts
