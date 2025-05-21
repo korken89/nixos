@@ -147,7 +147,6 @@
 
       if status --is-interactive
           keychain --eval --quiet -Q id_ed25519 | source
-          bind \cf "tmux-sessionizer"
       end
 
       begin
