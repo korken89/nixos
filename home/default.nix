@@ -31,6 +31,7 @@ in
       fd
       file
       fzf
+      gh
       gimp
       gnumake
       gsettings-desktop-schemas
