@@ -14,6 +14,7 @@ in
     ./openems.nix
     ./screens.nix
     ./stylix.nix
+    ./swayidle.nix
     ./tmux.nix
     ./waybar.nix
     ./wm.nix

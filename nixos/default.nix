@@ -37,10 +37,9 @@
     dunst
     rofimoji
     rofi-wayland
+    swaylock-effects
     swww
     wl-mirror
-    swayidle
-    swaylock-effects
     brightnessctl
     grim # screenshot functionality
     slurp # screenshot functionality
