@@ -77,6 +77,7 @@ in
       xchm
 
       # Applications
+      bambu-studio
       chromium
       element-desktop
       firefox
