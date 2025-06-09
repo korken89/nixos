@@ -155,11 +155,15 @@
           end
       end
 
-      function ls -d 'exa instead of ls'
-        if type --quiet exa
-          exa --group-directories-first --git --icons $argv
+      function ls -d 'eza instead of ls when output is a terminal'
+        if isatty 1
+          if type --quiet eza
+            eza --group-directories-first --git --icons $argv
+          else
+            command ls --color=auto $argv
+          end
         else
-          command ls --color=auto $argv
+          command ls $argv
         end
       end
 
