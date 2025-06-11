@@ -21,7 +21,6 @@
     inputs.probe-rs-rules.nixosModules.${system}.default
 
     ./wm.nix
-    ./storage.nix
   ];
 
   environment.systemPackages = with pkgs; [

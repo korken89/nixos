@@ -109,6 +109,7 @@
             modules = [
               ./hosts/home-workstation/hardware-configuration.nix
               ./nixos
+              ./nixos/storage.nix
             ];
           };
         # Lenovo Yoga Slim 7x laptop

@@ -16,8 +16,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   # # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
@@ -42,6 +40,7 @@
   hardware.cpu.intel.updateMicrocode = true;
 
   emifre.storage = {
+    enable = true;
     bootType = "uefi";
     encryption = false;
     device = "/dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S649NX1T101487T";

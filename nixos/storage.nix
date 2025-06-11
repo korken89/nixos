@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   inputs,
   ...
@@ -34,6 +35,20 @@ in
     encryption = mkOption {
       type = types.bool;
       description = "encrypt root ZFS pool";
+    };
+    persist_dirs = mkOption {
+      # TODO: Enable the same type-checking as the underlying impermanence?
+      # https://github.com/nix-community/impermanence/blob/master/nixos.nix#L404
+      # type = types.listOf types.path;
+      description = "additional directories to persist (for systems using impermanence)";
+      default = [ ];
+    };
+    persist_files = mkOption {
+      # TODO: Enable the same type-checking as the underlying impermanence?
+      # https://github.com/nix-community/impermanence/blob/master/nixos.nix#L392
+      # type = types.listOf types.path;
+      description = "additional files to persist (for systems using impermanence)";
+      default = [ ];
     };
   };
 
