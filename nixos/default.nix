@@ -35,8 +35,6 @@
     libnotify
     polkit_gnome
     dunst
-    rofimoji
-    rofi-wayland
     swaylock-effects
     swww
     wl-mirror

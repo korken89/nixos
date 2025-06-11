@@ -5,6 +5,19 @@
 }:
 
 {
+  # rofi
+  home.packages = with pkgs; [
+    rofimoji
+  ];
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland;
+  };
+
+  stylix.targets.rofi.enable = true;
+
+  # XWayland
   imports = [ ./xwayland-satellite.nix ];
 
   # Configure niri
