@@ -9,6 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hardware.url = "github:nixos/nixos-hardware";
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,8 +90,24 @@
             inherit system;
 
             modules = [
-              ./hosts/work-workstation/configuration.nix
               ./hosts/work-workstation/hardware-configuration.nix
+              ./nixos
+            ];
+          };
+        # Intel 12900k workstation @ home
+        emifre-home-workstation =
+          let
+            system = "x86_64-linux";
+          in
+          lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+
+            inherit system;
+
+            modules = [
+              ./hosts/home-workstation/hardware-configuration.nix
               ./nixos
             ];
           };
@@ -99,7 +122,7 @@
             };
 
             modules = [
-              ./hosts/laptop-yoga-7x/configuration.nix
+              ./hosts/laptop-yoga-7x/hardware-configuration.nix
               ./nixos
             ];
           };

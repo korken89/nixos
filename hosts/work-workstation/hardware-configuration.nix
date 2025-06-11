@@ -6,13 +6,24 @@
   lib,
   pkgs,
   modulesPath,
+  inputs,
   ...
 }:
 
 {
   imports = [
+    inputs.hardware.nixosModules.common-cpu-intel
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+
+  # Kernel (latest)
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "emifre-work-workstation"; # Define your hostname.
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -55,5 +66,6 @@
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.cpu.intel.updateMicrocode = true;
 }
