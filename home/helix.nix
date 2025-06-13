@@ -11,6 +11,7 @@
     nil
     markdown-oxide
     ltex-ls
+    ltex-ls-plus
   ];
 
   xdg.configFile."helix/config.toml".source = ../dotfiles/helix/config.toml;
