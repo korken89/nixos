@@ -82,12 +82,13 @@ in
       element-desktop
       firefox
       inkscape
+      libreoffice-qt6-fresh
       mattermost-desktop
       netbird
       pulseview
       signal-desktop
-      sigrok-firmware-fx2lafw
       sigrok-cli
+      sigrok-firmware-fx2lafw
       telegram-desktop
       tokei
       vlc
