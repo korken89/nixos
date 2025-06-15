@@ -53,7 +53,10 @@
       # https://github.com/sodiboo/niri-flake/issues/946
       "org.freedesktop.impl.portal.FileChooser" = "gtk";
     };
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
   };
 
   services.blueman-applet.enable = true;
