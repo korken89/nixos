@@ -37,6 +37,7 @@ in
       gnumake
       gsettings-desktop-schemas
       helvum
+      jq
       kdePackages.okular
       mqttui
       nixfmt-rfc-style
