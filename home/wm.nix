@@ -8,6 +8,7 @@
   # rofi
   home.packages = with pkgs; [
     rofimoji
+    nautilus
   ];
 
   programs.rofi = {
