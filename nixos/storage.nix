@@ -149,6 +149,7 @@ in
           enable = true;
           efiSupport = true;
           efiInstallAsRemovable = true;
+          useOSProber = true;
         };
         disko.devices = {
           zpool = {
