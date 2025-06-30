@@ -25,11 +25,14 @@
 
   environment.systemPackages = with pkgs; [
     # Utilities
-    alsa-utils
     blueman
     keychain
     networkmanagerapplet
     syncthing
+
+    # Audio utils
+    alsa-utils
+    pulseaudio
 
     # WM stuff
     alacritty
