@@ -15,10 +15,16 @@
           profile = {
             name = "work";
             outputs = [
+              # {
+              #   criteria = "Samsung Electric Company C34J79x H4ZRA01366";
+              #   mode = "3440x1440@59.973";
+              #   position = "0,0";
+              # }
               {
-                criteria = "Samsung Electric Company C34J79x H4ZRA01366";
-                mode = "3440x1440@59.973";
+                criteria = "Lenovo Group Limited L32p-30 U5128TW7";
+                mode = "3840x2160@59.997";
                 position = "0,0";
+                scale = 1.25;
               }
               {
                 criteria = "Dell Inc. DELL U2518D 3C4YP7BK268L";
