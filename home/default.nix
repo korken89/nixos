@@ -33,7 +33,7 @@ in
       file
       fzf
       gh
-      gimp
+      gimp3
       gnumake
       gsettings-desktop-schemas
       helvum
