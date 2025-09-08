@@ -210,6 +210,9 @@
   environment.variables.EDITOR = "hx";
   environment.variables.TERM = "xterm-256color";
 
+  # Fix /etc/hosts
+  environment.etc.hosts.mode = "0644";
+
   fonts = {
     packages = with pkgs; [
       corefonts # Microsoft fonts
