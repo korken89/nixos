@@ -68,6 +68,7 @@ in
       flip-link
       gcc
       gcc-arm-embedded
+      ghidra
       jujutsu
       openssl
       pkg-config
