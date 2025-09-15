@@ -26,7 +26,7 @@ language-servers = [ "ltex-ls" ]
 [[language]]
 name = "markdown"
 text-width = 100
-language-servers = [ "ltex-ls", "marksman" ]
+language-servers = [ "ltex-ls", "markdown-oxide" ]
 formatter = { command = 'prettier', args = [
   "--parser",
   "markdown",

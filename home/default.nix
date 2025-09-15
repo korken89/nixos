@@ -39,6 +39,8 @@ in
       helvum
       jq
       kdePackages.okular
+      markdown-oxide
+      marksman
       mqttui
       nixfmt-rfc-style
       nixfmt-tree
