@@ -39,8 +39,6 @@ in
       helvum
       jq
       kdePackages.okular
-      markdown-oxide
-      marksman
       mqttui
       nixfmt-rfc-style
       nixfmt-tree
@@ -56,6 +54,11 @@ in
       wireshark
       xxd
       zip
+
+      # Markdown
+      markdown-oxide
+      marksman
+      prettier
 
       # Development
       autoconf
