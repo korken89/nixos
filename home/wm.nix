@@ -11,10 +11,7 @@
     nautilus
   ];
 
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-  };
+  programs.rofi.enable = true;
 
   stylix.targets.rofi.enable = true;
 
