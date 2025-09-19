@@ -132,6 +132,12 @@ in
     enable = true;
     enableFishIntegration = true;
   };
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true; # see note on other shells below
+    nix-direnv.enable = true;
+  };
+
   programs.command-not-found.enable = false;
 
   # Home Manager needs a bit of information about you and the

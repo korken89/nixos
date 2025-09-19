@@ -145,6 +145,7 @@
       end
 
       if status --is-interactive
+          direnv hook fish | source
           keychain --eval --quiet -Q id_ed25519 | source
       end
 
