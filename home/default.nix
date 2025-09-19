@@ -77,6 +77,7 @@ in
       pkg-config
       probe-rs-tools
       python3
+      qemu
       rustup
       sdcc
       udev
