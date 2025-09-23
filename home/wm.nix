@@ -21,10 +21,6 @@
   # Configure niri
   xdg.configFile."niri/config.kdl".source = ../dotfiles/niri/config.kdl;
 
-  # Nix packages configure Chrome and Electron apps to run in native Wayland
-  # mode if this environment variable is set.
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
-
   xdg.portal = {
     config.common = {
       # Copy the original portal configuration of niri
