@@ -252,12 +252,6 @@ cursor {
 }
 
 environment {
-    // If xwayland-satellite.service is running it defines an Xwayland display
-    // with this identifier.
-    DISPLAY ":0"
-    
-    // Fixes some Java apps, e.g. file picker not showing (stm32cubemx)
-    _JAVA_AWT_WM_NONREPARENTING "1"
 }
 
 // Add lines like this to spawn processes at startup.
