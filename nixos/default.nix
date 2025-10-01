@@ -252,6 +252,9 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
+  # Saleae
+  hardware.saleae-logic.enable = true;
+
   # Enable sound with pipewire
   security.rtkit.enable = true;
   services.pipewire = {

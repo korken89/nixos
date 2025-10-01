@@ -94,6 +94,7 @@ in
       mattermost-desktop
       netbird
       pulseview
+      saleae-logic-2
       signal-desktop
       sigrok-cli
       sigrok-firmware-fx2lafw
