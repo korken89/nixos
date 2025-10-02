@@ -259,7 +259,7 @@ environment {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
-// spawn-at-startup "swayidle" "-w" "timeout" "300" "'swaylock -f -F -c 000000 --grace 5 --grace-no-mouse'"
+spawn-at-startup "swaybg" "-i" "/home/emifre/Wallpaper/sansbg.png"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.

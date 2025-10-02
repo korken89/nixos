@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     rofimoji
     nautilus
+    swaybg
   ];
 
   programs.rofi.enable = true;
