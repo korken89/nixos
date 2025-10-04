@@ -91,12 +91,8 @@
 
             modules = [
               ./hosts/work-workstation/hardware-configuration.nix
+              ./hosts/work-workstation
               ./nixos
-              {
-                home-manager.users.emifre = {
-                  notesDirectory = "$HOME/Sync/Work Notes";
-                };
-              }
             ];
           };
         # Intel 12900k workstation @ home
@@ -113,13 +109,9 @@
 
             modules = [
               ./hosts/home-workstation/hardware-configuration.nix
+              ./hosts/home-workstation
               ./nixos
               ./nixos/storage.nix
-              {
-                home-manager.users.emifre = {
-                  notesDirectory = "$HOME/Documents/Notes";
-                };
-              }
             ];
           };
         # Lenovo Yoga Slim 7x laptop
@@ -134,12 +126,8 @@
 
             modules = [
               ./hosts/laptop-yoga-7x/hardware-configuration.nix
+              ./hosts/laptop-yoga-7x
               ./nixos
-              {
-                home-manager.users.emifre = {
-                  notesDirectory = "$HOME/Sync/Notes";
-                };
-              }
             ];
           };
       };
