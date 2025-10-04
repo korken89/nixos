@@ -11,6 +11,7 @@ in
   imports = [
     ./git.nix
     ./helix.nix
+    ./notes.nix
     ./openems.nix
     ./screens.nix
     ./stylix.nix

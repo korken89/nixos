@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Where your notes live
-NOTES_DIR="$HOME/Sync/Work Notes"
+# Where your notes live (substituted at build time)
+NOTES_DIR="@NOTES_DIR@"
 
 # Editor + terminal (adjust if you like)
 EDITOR_CMD=(hx)
