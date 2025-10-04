@@ -64,7 +64,10 @@
         system:
         import inputs.nixpkgs {
           inherit system;
-          config.allowUnfree = true;
+          config = {
+            allowUnfree = true;
+            allowUnsupportedSystem = true;
+          };
           # overlays = overlays;
         }
       );
@@ -87,8 +90,6 @@
               inherit inputs system;
             };
 
-            inherit system;
-
             modules = [
               ./hosts/work-workstation/hardware-configuration.nix
               ./hosts/work-workstation
@@ -104,8 +105,6 @@
             specialArgs = {
               inherit inputs system;
             };
-
-            inherit system;
 
             modules = [
               ./hosts/home-workstation/hardware-configuration.nix

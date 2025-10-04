@@ -14,7 +14,7 @@
       home-manager.extraSpecialArgs = {
         inherit inputs system;
       };
-      home-manager.useGlobalPkgs = true;
+      home-manager.useGlobalPkgs = false;
       home-manager.useUserPackages = true;
       home-manager.users.emifre = import ../home;
     }
@@ -283,8 +283,10 @@
   };
   hardware.probe-rs.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnsupportedSystem = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnsupportedSystem = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
