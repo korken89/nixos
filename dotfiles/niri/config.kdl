@@ -353,6 +353,7 @@ binds {
     Mod+D { spawn "rofi" "-show" "drun" "-show-icons" "-display-drun" ">"; }
     Mod+Shift+B { spawn "swaylock" "-f" "-c" "000000"; }
     Mod+E { spawn "thunar"; }
+    Mod+N { spawn "take-notes"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

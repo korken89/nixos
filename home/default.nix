@@ -67,6 +67,7 @@ in
       cargo-bloat
       cargo-expand
       cargo-watch
+      claude-code
       cmake
       flip-link
       gcc

@@ -24,6 +24,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    # Custom scripts
+    (writeShellScriptBin "take-notes" (builtins.readFile ../scripts/notes.sh))
+
     # Utilities
     blueman
     keychain
