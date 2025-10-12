@@ -27,7 +27,7 @@
 
     difftastic = {
       enable = true;
-      color = "always";
+      options.color = "always";
     };
 
     aliases = {
