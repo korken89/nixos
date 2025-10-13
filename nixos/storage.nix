@@ -150,6 +150,7 @@ in
           efiSupport = true;
           efiInstallAsRemovable = true;
           useOSProber = true;
+          configurationLimit = 4;
         };
         disko.devices = {
           zpool = {
