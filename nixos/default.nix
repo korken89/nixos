@@ -22,6 +22,7 @@
 
     ./file-manager.nix
     ./fonts.nix
+    ./games.nix
     ./hardware.nix
     ./locale.nix
     ./security.nix
