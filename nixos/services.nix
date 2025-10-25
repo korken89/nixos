@@ -6,7 +6,6 @@
     # require public key authentication for better security
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "no";
   };
 
   # Enable netbird daemon
