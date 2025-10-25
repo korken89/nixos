@@ -129,6 +129,23 @@
               ./nixos
             ];
           };
+        # Lenovo Thinkpad X230 laptop
+        emifre-thinkpad-x230 =
+          let
+            system = "x86_64-linux";
+          in
+          lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+
+            modules = [
+              ./hosts/laptop-x230/hardware-configuration.nix
+              ./hosts/laptop-x230
+              ./nixos
+              ./nixos/storage.nix
+            ];
+          };
       };
     };
 }
