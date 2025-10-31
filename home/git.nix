@@ -7,12 +7,23 @@
 
 {
   # Git
+  programs.difftastic = {
+    enable = true;
+    options.color = "always";
+  };
   programs.git = {
     enable = true;
-    userName = "Emil Fresk";
     # userEmail = "emil.fresk@gmail.com";
 
-    extraConfig = {
+    settings = {
+      user.name = "Emil Fresk";
+      alias = {
+        ci = "commit";
+        co = "checkout";
+        st = "status";
+        l = "log --all --graph --oneline";
+        rl = "!git log --all --graph --oneline --decorate=on --color | tac";
+      };
       pull.rebase = true;
       fetch = {
         prune = true;
@@ -23,19 +34,6 @@
         colorMoved = true;
         colorMovedWS = "allow-indentation-change";
       };
-    };
-
-    difftastic = {
-      enable = true;
-      options.color = "always";
-    };
-
-    aliases = {
-      ci = "commit";
-      co = "checkout";
-      st = "status";
-      l = "log --all --graph --oneline";
-      rl = "!git log --all --graph --oneline --decorate=on --color | tac";
     };
   };
 

@@ -7,7 +7,7 @@
       fira-code-symbols
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       font-awesome
       nerd-fonts.fira-code
     ];
