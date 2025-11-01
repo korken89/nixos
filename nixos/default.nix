@@ -22,7 +22,6 @@
 
     ./file-manager.nix
     ./fonts.nix
-    ./games.nix
     ./hardware.nix
     ./locale.nix
     ./security.nix
@@ -30,6 +29,11 @@
     ./shell.nix
     ./users.nix
     ./wm.nix
+
+  ]
+  ++ lib.optionals (system == "x86_64-linux") [
+    # x86_64 only
+    ./games.nix
   ];
 
   environment.systemPackages = with pkgs; [

@@ -38,6 +38,10 @@
 
   hardware.enableRedistributableFirmware = true;
 
+  # This seems to reduce startup by 1.5 min due to waiting for TPM?
+  systemd.tpm2.enable = false;
+  boot.initrd.systemd.tpm2.enable = false;
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/root";
