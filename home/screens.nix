@@ -49,7 +49,7 @@
         {
           output = {
             criteria = "LG Electronics LG TV SSCR2 0x01010101";
-            mode = "3840x2160@60.000";
+            mode = "3840x2160@119.880";
             position = "0,0";
             alias = "home_lg_tv";
           };
