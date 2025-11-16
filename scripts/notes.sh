@@ -13,7 +13,7 @@ rofi_pick() {
 }
 
 main_menu() {
-  printf '%s\n' "Open TODO.md" "New note" | rofi_pick "Work notes:  "
+  printf '%s\n' "Open TODO.md" "Search notes" "New note" | rofi_pick "Work notes:  "
 }
 
 open_todo() {
@@ -22,7 +22,16 @@ open_todo() {
     exit 1
   fi
 
-  setsid -f "$TERMINAL" -e "${EDITOR_CMD[@]}" "$NOTES_DIR/TODO.md" >/dev/null 2>&1
+  setsid -f "$TERMINAL" -e sh -c "cd '$NOTES_DIR' && '${EDITOR_CMD[@]}' TODO.md" >/dev/null 2>&1
+}
+
+search_notes() {
+  if [ ! -d "$NOTES_DIR" ]; then
+    echo "Error: Notes directory does not exist: $NOTES_DIR" >&2
+    exit 1
+  fi
+
+  setsid -f "$TERMINAL" -e sh -c "cd '$NOTES_DIR' && '${EDITOR_CMD[@]}'" >/dev/null 2>&1
 }
 
 select_template() {
@@ -71,6 +80,7 @@ EOF
 
   # Open helix directly and handle cleanup after if the file was not edited
   setsid -f "$TERMINAL" -e sh -c "
+    cd '$NOTES_DIR'
     '${EDITOR_CMD[@]}' '$filepath'
     # Check if file was modified after editing
     if [ -f '$filepath' ]; then
@@ -83,7 +93,8 @@ EOF
 }
 
 case "$(main_menu)" in
-  "Open TODO.md") open_todo ;;
-  "New note")     new_note ;;
-  *)              exit 0 ;;
+  "Open TODO.md")  open_todo ;;
+  "Search notes")  search_notes ;;
+  "New note")      new_note ;;
+  *)               exit 0 ;;
 esac

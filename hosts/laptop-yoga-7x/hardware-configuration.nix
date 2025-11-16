@@ -15,6 +15,11 @@
 
       nixpkgs.hostPlatform.system = "aarch64-linux";
 
+      # Use this to try upstream kernel
+      # specialisation.upstream-kernel.configuration = {
+      #   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+      # };
+
       nix = {
         channel.enable = false;
       };
