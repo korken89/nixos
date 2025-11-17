@@ -74,9 +74,12 @@
   virtualisation.docker.enable = true;
 
   # Make sure helix is used for commands
-  environment.variables.SUDO_EDITOR = "hx";
-  environment.variables.EDITOR = "hx";
-  environment.variables.TERM = "xterm-256color";
+  environment.sessionVariables = {
+    VISUAL = lib.mkForce "hx";
+    SUDO_EDITOR = lib.mkForce "hx";
+    EDITOR = lib.mkForce "hx";
+    TERM = lib.mkForce "xterm-256color";
+  };
 
   # Fix /etc/hosts
   environment.etc.hosts.mode = "0644";
