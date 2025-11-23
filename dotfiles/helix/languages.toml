@@ -33,6 +33,7 @@ formatter = { command = 'prettier', args = [
   "--prose-wrap",
   "always",        # <always|never|preserve>
 ] }
+comment-tokens = ["-", "+", "*", "- [ ]", ">"]
 
 [[language]]
 name = "typst"
