@@ -12,6 +12,8 @@
     markdown-oxide
     ltex-ls
     ltex-ls-plus
+    tinymist
+    harper
   ];
 
   xdg.configFile."helix/config.toml".source = ../dotfiles/helix/config.toml;

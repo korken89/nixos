@@ -3,6 +3,10 @@ name = "nix"
 formatter = { command = "nixfmt" }
 auto-format = true
 
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
 [language-server.ltex-ls]
 command = "ltex-ls"
 
@@ -13,20 +17,20 @@ ltex.enabled = ["context", "html", "markdown", "restructuredtext", "rust", "git-
 text-width = 100
 name = "rust"
 # spell checking in Rust on master
-language-servers = [ "ltex-ls", "rust-analyzer" ]
+language-servers = [ "rust-analyzer", "harper-ls" ]
 
 # [language.config]
 # rust-analyzer.diagnostics.disabled = ["mismatched-arg-count", "macro-error", "unresolved-proc-macro"]
 
 [[language]]
 name = "git-commit"
-language-servers = [ "ltex-ls" ]
+language-servers = [ "harper-ls" ]
 
 
 [[language]]
 name = "markdown"
 text-width = 100
-language-servers = [ "ltex-ls", "markdown-oxide" ]
+language-servers = [ "markdown-oxide", "harper-ls" ]
 formatter = { command = 'prettier', args = [
   "--parser",
   "markdown",
@@ -40,4 +44,4 @@ name = "typst"
 auto-format = true
 formatter.command = "typstyle"
 # spell checking
-language-servers = [ "ltex-ls-plus", "tinymist" ]
+language-servers = [ "tinymist", "harper-ls" ]
