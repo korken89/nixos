@@ -29,7 +29,7 @@
               {
                 criteria = "Dell Inc. DELL U2518D 3C4YP7BK268L";
                 mode = "2560x1440@59.951";
-                position = "3440,-680";
+                position = "3840,-250";
                 transform = "270";
               }
             ];
