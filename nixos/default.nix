@@ -23,6 +23,7 @@
     ./file-manager.nix
     ./fonts.nix
     ./hardware.nix
+    ./keyboard.nix
     ./locale.nix
     ./security.nix
     ./services.nix
