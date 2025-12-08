@@ -62,4 +62,7 @@
   # See: https://docs.kernel.org/admin-guide/sysrq.html
   boot.kernel.sysctl."kernel.sysrq" = 80;
 
+  # Supposedly reduces the number of crashes
+  # https://github.com/kuruczgy/x1e-nixos-config/issues/185#issuecomment-3628711242
+  boot.kernelParams = [ "pcie_aspm=off" ];
 }
