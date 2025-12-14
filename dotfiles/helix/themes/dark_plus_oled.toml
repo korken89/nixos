@@ -85,7 +85,7 @@
 "warning"                    = { fg = "gold2" }
 "error"                      = { fg = "red" }
 "info"                       = { fg = "light_blue" }
-"hint"                       = { fg = "light_gray3" }
+"hint"                       = { fg = "dark_gray5" }
 "diagnostic.error".underline = { color = "red", style = "curl" }
 "diagnostic".underline       = { color = "gold", style = "curl" }
 "diagnostic.unnecessary"     = { modifiers = ["dim"] }
