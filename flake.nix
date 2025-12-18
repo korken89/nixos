@@ -146,6 +146,23 @@
               ./nixos/storage.nix
             ];
           };
+        # Lenovo Thinkpad E14 laptop
+        emifre-thinkpad-e14 =
+          let
+            system = "x86_64-linux";
+          in
+          lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+
+            modules = [
+              ./hosts/laptop-e14/hardware-configuration.nix
+              ./hosts/laptop-e14
+              ./nixos
+              ./nixos/storage.nix
+            ];
+          };
       };
     };
 }
