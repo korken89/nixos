@@ -23,9 +23,15 @@
   hardware.saleae-logic.enable = true;
 
   # udev
+  environment.systemPackages = with pkgs; [
+    openocd
+  ];
   services.udev = {
     enable = true;
-    packages = with pkgs; [ libsigrok ];
+    packages = with pkgs; [
+      libsigrok
+      openocd
+    ];
   };
   hardware.probe-rs.enable = true;
 }
