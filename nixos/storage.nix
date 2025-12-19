@@ -22,7 +22,7 @@ in
       description = "Whether to enable custom ${ns} storage configuration";
     };
     size = mkOption {
-      type = types.string;
+      type = types.str;
       description = "The size of the final (large) partition";
       default = "100%";
     };
