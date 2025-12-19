@@ -21,6 +21,11 @@ in
       default = false;
       description = "Whether to enable custom ${ns} storage configuration";
     };
+    size = mkOption {
+      type = types.string;
+      description = "The size of the final (large) partition";
+      default = "100%";
+    };
     device = mkOption {
       type = types.path;
       description = "root block device for the system";
@@ -114,7 +119,7 @@ in
                       {
                         luks = {
                           label = "ZFS-Root-Via-LUKS-Partition";
-                          size = "100%";
+                          size = cfg.size;
                           content = {
                             type = "luks";
                             name = "crypted-${zfsRootPool}";
@@ -129,7 +134,7 @@ in
                       {
                         zroot = {
                           label = "ZFS-Root-Partition";
-                          size = "100%";
+                          size = cfg.size;
                           content = {
                             type = "zfs";
                             pool = zfsRootPool;

@@ -42,8 +42,9 @@
 
   emifre.storage = {
     enable = true;
+    size = "60%";
     bootType = "uefi";
-    encryption = false;
+    encryption = true;
     device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNX0R531766J";
   };
 }
