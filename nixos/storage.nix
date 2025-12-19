@@ -23,7 +23,7 @@ in
     };
     size = mkOption {
       type = types.str;
-      description = "The size of the final (large) partition";
+      description = "The size of the final (large) partition. Use absolute sizes like '500G' or '100%' for remaining space. Note: percentages other than 100% are not supported by disko.";
       default = "100%";
     };
     device = mkOption {
