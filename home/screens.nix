@@ -39,7 +39,7 @@
         # Yoga 7x laptop
         {
           output = {
-            criteria = "eDP-1";
+            criteria = "Samsung Display Corp. 0x4189 Unknown";
             scale = 1.5;
             alias = "yoga_laptop";
           };
