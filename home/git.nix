@@ -7,9 +7,19 @@
 
 {
   # Git
-  programs.difftastic = {
+  programs.delta = {
     enable = true;
-    options.color = "always";
+    enableGitIntegration = true;
+    enableJujutsuIntegration = true;
+    options = {
+      decorations = {
+        commit-decoration-style = "bold yellow box ul";
+        file-decoration-style = "none";
+        file-style = "bold yellow ul";
+      };
+      features = "decorations line-numbers";
+      whitespace-error-style = "22 reverse";
+    };
   };
   programs.git = {
     enable = true;
