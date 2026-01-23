@@ -14,12 +14,9 @@
           command = "${pkgs.swaylock-effects}/bin/swaylock -f -F -c 000000 --grace 5 --grace-no-mouse";
         }
       ];
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.swaylock-effects}/bin/swaylock -f -F -c 000000";
-        }
-      ];
+      events = {
+        "before-sleep" = "${pkgs.swaylock-effects}/bin/swaylock -f -F -c 000000";
+      };
     };
   };
 }

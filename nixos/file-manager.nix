@@ -1,15 +1,11 @@
 { pkgs, ... }:
 {
   # File manager
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
+  programs.thunar.enable = true;
   environment.systemPackages = with pkgs; [
     file-roller
+    thunar-archive-plugin
+    thunar-volman
   ];
   programs.xfconf.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities

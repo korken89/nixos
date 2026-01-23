@@ -28,7 +28,7 @@
     claude-code
 
     # Nix tools
-    nixfmt-rfc-style
+    nixfmt
     nixfmt-tree
     nvd
   ];
