@@ -27,6 +27,7 @@
       # EDA tools
       freecad
       (kicad.override { compressStep = false; })
+      librepcb
     ]
     ++ lib.optionals (system == "x86_64-linux") [
       # x86_64 only
