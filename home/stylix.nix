@@ -49,5 +49,6 @@
     };
     targets.alacritty.enable = true;
     targets.gtk.enable = true;
+    targets.lazygit.enable = true;
   };
 }

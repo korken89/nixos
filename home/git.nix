@@ -6,7 +6,11 @@
 }:
 
 {
-  # Git
+  # Git, pager, ui
+  programs.lazygit = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
