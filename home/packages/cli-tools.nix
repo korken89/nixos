@@ -9,6 +9,7 @@
     fd
     file
     fzf
+    graphviz
     jq
     pigz
     ripgrep
@@ -16,6 +17,7 @@
     unzip
     usbutils
     wget
+    xdot
     xxd
     zip
   ];
