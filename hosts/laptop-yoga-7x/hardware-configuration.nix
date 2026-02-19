@@ -64,5 +64,5 @@
 
   # Supposedly reduces the number of crashes
   # https://github.com/kuruczgy/x1e-nixos-config/issues/185#issuecomment-3628711242
-  boot.kernelParams = [ "pcie_aspm=off" ];
+  # boot.kernelParams = [ "pcie_aspm=off" ];
 }
