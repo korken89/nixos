@@ -8,6 +8,7 @@ bufferline = "always"
 mouse = false
 auto-pairs = false
 end-of-line-diagnostics = "hint"
+true-color = true
 
 [editor.cursor-shape]
 normal = "block"
