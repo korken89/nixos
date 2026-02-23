@@ -32,4 +32,29 @@
     nixfmt-tree
     nvd
   ];
+
+  programs.opencode = {
+    enable = true;
+    settings = {
+      "permission" = {
+        "*" = "ask";
+        "read" = "allow";
+        "edit" = "ask";
+        "glob" = "allow";
+        "grep" = "allow";
+        "list" = "allow";
+        "bash" = "ask";
+        "task" = "ask";
+        "skill" = "ask";
+        "lsp" = "ask";
+        "todoread" = "ask";
+        "webfetch" = "ask";
+        "websearch" = "ask";
+        "external_directory" = "ask";
+        "doom_loop" = "ask";
+        "*.env" = "deny";
+        "*.env.*" = "deny";
+      };
+    };
+  };
 }

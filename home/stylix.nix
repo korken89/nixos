@@ -47,8 +47,11 @@
         desktop = 10;
       };
     };
-    targets.alacritty.enable = true;
-    targets.gtk.enable = true;
-    targets.lazygit.enable = true;
+    targets = {
+      alacritty.enable = true;
+      gtk.enable = true;
+      lazygit.enable = true;
+      opencode.enable = true;
+    };
   };
 }
