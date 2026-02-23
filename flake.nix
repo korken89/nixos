@@ -50,7 +50,6 @@
       ...
     }@inputs:
     let
-      inherit (self) inputs outputs;
       lib = nixpkgs.lib;
 
       # overlays = builtins.attrValues (import ./overlays { inherit inputs outputs; });
@@ -71,98 +70,36 @@
           # overlays = overlays;
         }
       );
+
+      mkHost =
+        {
+          hostname,
+          system ? "x86_64-linux",
+        }:
+        lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs system;
+          };
+          modules = [
+            ./hosts/${hostname}/hardware-configuration.nix
+            ./hosts/${hostname}
+            ./nixos
+          ];
+        };
     in
     {
-      specialArgs = {
-        inherit inputs;
-      };
-
       formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
       nixosConfigurations = {
-        # Intel 12900k workstation @ work
-        emifre-work-workstation =
-          let
-            system = "x86_64-linux";
-          in
-          lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-
-            modules = [
-              ./hosts/work-workstation/hardware-configuration.nix
-              ./hosts/work-workstation
-              ./nixos
-            ];
-          };
-        # Intel 12900k workstation @ home
-        emifre-home-workstation =
-          let
-            system = "x86_64-linux";
-          in
-          lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-
-            modules = [
-              ./hosts/home-workstation/hardware-configuration.nix
-              ./hosts/home-workstation
-              ./nixos
-              ./nixos/storage.nix
-            ];
-          };
-        # Lenovo Yoga Slim 7x laptop
-        emifre-yoga-7x-nixos =
-          let
-            system = "aarch64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-
-            modules = [
-              ./hosts/laptop-yoga-7x/hardware-configuration.nix
-              ./hosts/laptop-yoga-7x
-              ./nixos
-            ];
-          };
-        # Lenovo Thinkpad X230 laptop
-        emifre-thinkpad-x230 =
-          let
-            system = "x86_64-linux";
-          in
-          lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-
-            modules = [
-              ./hosts/laptop-x230/hardware-configuration.nix
-              ./hosts/laptop-x230
-              ./nixos
-              ./nixos/storage.nix
-            ];
-          };
-        # Lenovo Thinkpad E14 laptop
-        emifre-thinkpad-e14 =
-          let
-            system = "x86_64-linux";
-          in
-          lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-
-            modules = [
-              ./hosts/laptop-e14/hardware-configuration.nix
-              ./hosts/laptop-e14
-              ./nixos
-              ./nixos/storage.nix
-            ];
-          };
+        emifre-work-workstation = mkHost { hostname = "work-workstation"; };
+        emifre-home-workstation = mkHost { hostname = "home-workstation"; };
+        emifre-yoga-7x-nixos = mkHost {
+          hostname = "laptop-yoga-7x";
+          system = "aarch64-linux";
+        };
+        emifre-thinkpad-x230 = mkHost { hostname = "laptop-x230"; };
+        emifre-thinkpad-e14 = mkHost { hostname = "laptop-e14"; };
       };
     };
 }
