@@ -11,6 +11,7 @@
     enable = true;
     enableFishIntegration = true;
   };
+
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
@@ -25,6 +26,7 @@
       whitespace-error-style = "22 reverse";
     };
   };
+
   programs.git = {
     enable = true;
     # userEmail = "emil.fresk@gmail.com";
@@ -51,4 +53,18 @@
     };
   };
 
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      ui = {
+        default-command = [
+          "log"
+          "--reversed"
+        ];
+        diff-formatter = ":git";
+      };
+
+      user.name = "Emil Fresk";
+    };
+  };
 }

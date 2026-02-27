@@ -22,7 +22,6 @@
 
     # Version control
     gh
-    jujutsu
 
     # Editors/IDEs
     claude-code
