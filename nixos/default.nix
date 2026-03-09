@@ -43,6 +43,7 @@
     blueman
     keychain
     networkmanagerapplet
+    nix-output-monitor
     syncthing
 
     # Audio utils

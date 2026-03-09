@@ -43,3 +43,8 @@ end
 function la -d 'alias ls -la'
     ls -la $argv
 end
+
+function nrs -d 'nixos-rebuild switch with nom'
+    sudo -v
+    sudo nixos-rebuild switch $argv --log-format internal-json &| nom --json
+end
