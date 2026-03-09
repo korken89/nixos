@@ -60,6 +60,10 @@
         default-command = [
           "log"
           "--reversed"
+          "-r"
+          "::"
+          "--limit"
+          "20"
         ];
         diff-formatter = ":git";
       };
