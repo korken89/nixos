@@ -22,8 +22,8 @@
       mumble
 
       # Media
+      crosspipe
       vlc
-      helvum
       pavucontrol
 
       # Graphics
