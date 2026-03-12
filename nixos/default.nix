@@ -44,6 +44,7 @@
     keychain
     networkmanagerapplet
     nix-output-monitor
+    sshfs
     syncthing
 
     # Audio utils
