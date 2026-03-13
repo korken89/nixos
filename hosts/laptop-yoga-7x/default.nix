@@ -2,7 +2,7 @@
 {
   # Host-specific configuration for laptop
   home-manager.users.emifre = {
-    notesDirectory = "$HOME/Sync/Work Notes";
+    notesDirectory = "/syncthing/home_sync/Work Notes";
   };
 
   services.kanata.keyboards.internalKeyboard.devices = [
