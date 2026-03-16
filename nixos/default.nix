@@ -28,6 +28,7 @@
     ./security.nix
     ./services.nix
     ./shell.nix
+    ./sshfs.nix
     ./storage.nix
     ./users.nix
     ./wm.nix

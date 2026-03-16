@@ -5,6 +5,7 @@
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users = {
     ${username} = {
+      uid = 1000;
       shell = pkgs.fish;
       isNormalUser = true;
       description = "Emil Fresk";
