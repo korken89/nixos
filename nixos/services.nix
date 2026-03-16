@@ -1,4 +1,7 @@
-{ ... }:
+{ config, username, ... }:
+let
+  user = config.users.users.${username};
+in
 {
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -15,9 +18,9 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    user = "emifre";
-    dataDir = "/home/emifre";
-    configDir = "/home/emifre/.config/syncthing";
+    user = username;
+    dataDir = user.home;
+    configDir = "${user.home}/.config/syncthing";
   };
 
   # Enable sound with pipewire

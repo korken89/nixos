@@ -4,6 +4,7 @@
   pkgs,
   lib,
   system,
+  username,
   ...
 }:
 {
@@ -11,11 +12,11 @@
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.extraSpecialArgs = {
-        inherit inputs system;
+        inherit inputs system username;
       };
       home-manager.useGlobalPkgs = false;
       home-manager.useUserPackages = true;
-      home-manager.users.emifre = import ../home;
+      home-manager.users.${username} = import ../home;
     }
     inputs.probe-rs-rules.nixosModules.${system}.default
 

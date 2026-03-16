@@ -51,6 +51,7 @@
     }@inputs:
     let
       lib = nixpkgs.lib;
+      username = "emifre";
 
       # overlays = builtins.attrValues (import ./overlays { inherit inputs outputs; });
 
@@ -79,7 +80,7 @@
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs system;
+            inherit inputs system username;
           };
           modules = [
             ./hosts/${hostname}/hardware-configuration.nix

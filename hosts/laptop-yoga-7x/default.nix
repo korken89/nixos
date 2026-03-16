@@ -1,7 +1,7 @@
-{ ... }:
+{ username, ... }:
 {
   # Host-specific configuration for laptop
-  home-manager.users.emifre = {
+  home-manager.users.${username} = {
     notesDirectory = "/syncthing/home_sync/Work Notes";
   };
 

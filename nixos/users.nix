@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   users.groups.plugdev = { };
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users = {
-    emifre = {
+    ${username} = {
       shell = pkgs.fish;
       isNormalUser = true;
       description = "Emil Fresk";

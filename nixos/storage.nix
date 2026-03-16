@@ -3,11 +3,12 @@
   pkgs,
   config,
   inputs,
+  username,
   ...
 }:
 with lib;
 let
-  ns = "emifre";
+  ns = username;
   cfg = config.${ns}.storage;
 in
 {

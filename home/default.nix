@@ -2,6 +2,7 @@
   system,
   pkgs,
   inputs,
+  username,
   ...
 }:
 let
@@ -13,7 +14,7 @@ in
     ./gtk.nix
     ./helix.nix
     ./notes.nix
-    ./openems.nix
+    # ./openems.nix
     ./packages/analysis.nix
     ./packages/applications.nix
     ./packages/cli-tools.nix
@@ -38,8 +39,8 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "emifre";
-  home.homeDirectory = "/home/emifre";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

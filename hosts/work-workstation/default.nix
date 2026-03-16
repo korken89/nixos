@@ -1,7 +1,7 @@
-{ ... }:
+{ username, ... }:
 {
   # Host-specific configuration for work workstation
-  home-manager.users.emifre = {
+  home-manager.users.${username} = {
     notesDirectory = "$HOME/Sync/Work Notes";
   };
 
