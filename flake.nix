@@ -72,6 +72,10 @@
         }
       );
 
+      overlays = [
+        (import ./overlays/openems.nix)
+      ];
+
       mkHost =
         {
           hostname,
@@ -80,12 +84,13 @@
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs system username;
+            inherit inputs system username overlays;
           };
           modules = [
             ./hosts/${hostname}/hardware-configuration.nix
             ./hosts/${hostname}
             ./nixos
+            { nixpkgs.overlays = overlays; }
           ];
         };
     in

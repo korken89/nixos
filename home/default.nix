@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   username,
+  overlays,
   ...
 }:
 let
@@ -14,7 +15,7 @@ in
     ./gtk.nix
     ./helix.nix
     ./notes.nix
-    # ./openems.nix
+    ./openems.nix
     ./packages/analysis.nix
     ./packages/applications.nix
     ./packages/cli-tools.nix
@@ -36,6 +37,8 @@ in
     allowUnfree = true;
     allowUnsupportedSystem = true;
   };
+
+  nixpkgs.overlays = overlays;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

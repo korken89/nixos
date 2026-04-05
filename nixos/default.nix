@@ -5,6 +5,7 @@
   lib,
   system,
   username,
+  overlays,
   ...
 }:
 {
@@ -12,7 +13,7 @@
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.extraSpecialArgs = {
-        inherit inputs system username;
+        inherit inputs system username overlays;
       };
       home-manager.useGlobalPkgs = false;
       home-manager.useUserPackages = true;
