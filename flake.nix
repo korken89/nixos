@@ -78,7 +78,7 @@
 
       mkHost =
         {
-          hostname,
+          hostDir,
           system ? "x86_64-linux",
         }:
         lib.nixosSystem {
@@ -92,8 +92,8 @@
               ;
           };
           modules = [
-            ./hosts/${hostname}/hardware-configuration.nix
-            ./hosts/${hostname}
+            ./hosts/${hostDir}/hardware-configuration.nix
+            ./hosts/${hostDir}
             ./nixos
             { nixpkgs.overlays = overlays; }
           ];
@@ -103,15 +103,15 @@
       formatter = forEachSystem (pkgs: pkgs.nixfmt-tree);
 
       nixosConfigurations = {
-        emifre-work-workstation = mkHost { hostname = "work-workstation"; };
-        emifre-home-workstation = mkHost { hostname = "home-workstation"; };
+        emifre-work-workstation = mkHost { hostDir = "work-workstation"; };
+        emifre-home-workstation = mkHost { hostDir = "home-workstation"; };
         emifre-yoga-7x-nixos = mkHost {
-          hostname = "laptop-yoga-7x";
+          hostDir = "laptop-yoga-7x";
           system = "aarch64-linux";
         };
-        emifre-thinkpad-x230 = mkHost { hostname = "laptop-x230"; };
-        emifre-thinkpad-e14 = mkHost { hostname = "laptop-e14"; };
-        emifre-yoga-pro = mkHost { hostname = "laptop-yoga-pro"; };
+        emifre-thinkpad-x230 = mkHost { hostDir = "laptop-x230"; };
+        emifre-thinkpad-e14 = mkHost { hostDir = "laptop-e14"; };
+        emifre-yoga-pro = mkHost { hostDir = "laptop-yoga-pro"; };
       };
     };
 }
