@@ -84,7 +84,12 @@
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs system username overlays;
+            inherit
+              inputs
+              system
+              username
+              overlays
+              ;
           };
           modules = [
             ./hosts/${hostname}/hardware-configuration.nix
@@ -106,6 +111,7 @@
         };
         emifre-thinkpad-x230 = mkHost { hostname = "laptop-x230"; };
         emifre-thinkpad-e14 = mkHost { hostname = "laptop-e14"; };
+        emifre-yoga-pro = mkHost { hostname = "laptop-yoga-pro"; };
       };
     };
 }
