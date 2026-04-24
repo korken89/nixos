@@ -63,6 +63,19 @@
           };
         }
 
+        # Yoga Pro laptop
+        {
+          profile = {
+            name = "yoga_pro";
+            outputs = [
+              {
+                criteria = "Lenovo Group Limited 0x8AC2 Unknown";
+                scale = 1.5;
+              }
+            ];
+          };
+        }
+
         # 42" LG OLED TV screen
         {
           profile = {
