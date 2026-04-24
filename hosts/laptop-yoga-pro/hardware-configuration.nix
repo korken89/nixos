@@ -40,7 +40,6 @@
   emifre.storage = {
     enable = true;
     size = "600G";
-    bootType = "uefi";
     encryption = true;
     device = "/dev/disk/by-id/nvme-SKHynix_HFS001TEM4X182N_5ME7N005815707L64";
   };
