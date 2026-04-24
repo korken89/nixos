@@ -37,7 +37,6 @@
 
   emifre.storage = {
     enable = true;
-    bootType = "uefi";
     encryption = false;
     device = "/dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S649NX1T101487T";
   };

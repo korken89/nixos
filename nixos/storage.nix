@@ -31,30 +31,9 @@ in
       type = types.path;
       description = "root block device for the system";
     };
-    bootType = mkOption {
-      type = types.enum [
-        "bios"
-        "uefi"
-      ];
-      description = "choose boot variant";
-    };
     encryption = mkOption {
       type = types.bool;
       description = "encrypt root ZFS pool";
-    };
-    persist_dirs = mkOption {
-      # TODO: Enable the same type-checking as the underlying impermanence?
-      # https://github.com/nix-community/impermanence/blob/master/nixos.nix#L404
-      # type = types.listOf types.path;
-      description = "additional directories to persist (for systems using impermanence)";
-      default = [ ];
-    };
-    persist_files = mkOption {
-      # TODO: Enable the same type-checking as the underlying impermanence?
-      # https://github.com/nix-community/impermanence/blob/master/nixos.nix#L392
-      # type = types.listOf types.path;
-      description = "additional files to persist (for systems using impermanence)";
-      default = [ ];
     };
   };
 
@@ -74,48 +53,18 @@ in
               device = cfg.device;
               content = {
                 type = "gpt";
-                partitions = (
-                  {
-                    boot = {
-                      label = "BIOS-Boot-Partition";
-                      size = "1M";
-                      type = "EF02";
+                partitions = {
+                  ESP = {
+                    label = "EFI-Partition";
+                    size = "1G";
+                    type = "EF00";
+                    content = {
+                      type = "filesystem";
+                      format = "vfat";
+                      mountpoint = "/boot";
                     };
-                  }
-                  // (
-                    if cfg.bootType == "uefi" then
-                      {
-                        ESP = {
-                          label = "EFI-Partition";
-                          size = "1G";
-                          type = "EF00";
-                          content = {
-                            type = "filesystem";
-                            format = "vfat";
-                            mountpoint = "/boot";
-                          };
-                        };
-                      }
-                    else
-                      { }
-                  )
-                  // (
-                    if cfg.bootType == "bios" then
-                      {
-                        grub = {
-                          label = "Boot-Partition";
-                          size = "400M";
-                          content = {
-                            type = "filesystem";
-                            format = "ext4";
-                            mountpoint = "/boot";
-                          };
-                        };
-                      }
-                    else
-                      { }
-                  )
-                  // (
+                  };
+                } // (
                     if cfg.encryption then
                       {
                         luks = {
@@ -142,8 +91,7 @@ in
                           };
                         };
                       }
-                  )
-                );
+                  );
               };
             };
           };
@@ -153,6 +101,7 @@ in
         networking.hostId = "deadbeef"; # ZFS requirement
         boot.loader.grub = {
           enable = true;
+          device = "nodev";
           efiSupport = true;
           efiInstallAsRemovable = true;
           useOSProber = true;
@@ -169,6 +118,12 @@ in
                 compression = "zstd";
                 mountpoint = "none";
                 xattr = "sa";
+                relatime = "on";
+                dnodesize = "auto";
+                # We skip unicode normalization in filenames
+                # Let's not crash when we try to store some suspicious non-unicode-named files
+                # on syncthing, for example.
+                normalization = "none";
               };
               options.ashift = "12";
 

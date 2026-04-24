@@ -42,7 +42,6 @@
 
   emifre.storage = {
     enable = true;
-    bootType = "uefi";
     encryption = false;
     device = "/dev/disk/by-id/ata-Samsung_SSD_840_EVO_500GB_S1DHNSAF833369T";
   };
