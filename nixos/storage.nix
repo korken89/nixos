@@ -99,6 +99,8 @@ in
       }
       {
         networking.hostId = "deadbeef"; # ZFS requirement
+        services.zfs.autoScrub.enable = true;
+        boot.zfs.forceImportRoot = false;
         boot.loader.grub = {
           enable = true;
           device = "nodev";
