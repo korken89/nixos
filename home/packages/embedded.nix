@@ -38,7 +38,7 @@ in
       freecad
       freecad-zink
       (kicad.override { compressStep = false; })
-      librepcb
+      # librepcb
     ]
     ++ lib.optionals (system == "x86_64-linux") [
       # x86_64 only

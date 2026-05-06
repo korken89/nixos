@@ -60,7 +60,7 @@
     polkit_gnome
     dunst
     swaylock-effects
-    swww
+    awww
     wl-mirror
     brightnessctl
     grim # screenshot functionality

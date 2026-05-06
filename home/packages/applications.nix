@@ -45,7 +45,7 @@
     ]
     ++ lib.optionals (system == "x86_64-linux") [
       # x86_64 only
-      # bambu-studio
+      bambu-studio
       spotify
       slack
     ];

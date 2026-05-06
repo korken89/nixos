@@ -30,6 +30,7 @@
   programs.git = {
     enable = true;
     # userEmail = "emil.fresk@gmail.com";
+    signing.format = null;
 
     settings = {
       user.name = "Emil Fresk";
