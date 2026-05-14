@@ -26,6 +26,7 @@
     ./hardware.nix
     ./keyboard.nix
     ./locale.nix
+    ./remote-probe-rs.nix
     ./security.nix
     ./services.nix
     ./shell.nix
