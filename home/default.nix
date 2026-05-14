@@ -36,6 +36,7 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     allowUnsupportedSystem = true;
+    segger-jlink.acceptLicense = true;
   };
 
   nixpkgs.overlays = overlays;

@@ -13,6 +13,12 @@
     python3
     rustup
 
+    # Nordic
+    # nrf-command-line-tools
+    # nrfconnect
+    nrf-udev
+    nrfutil
+
     # Rust tools
     cargo-binutils
     cargo-bloat
