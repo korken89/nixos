@@ -48,3 +48,8 @@ function nrs -d 'nixos-rebuild switch with nom'
     sudo -v
     sudo nixos-rebuild switch $argv --log-format internal-json &| nom --json
 end
+
+function nrb -d 'nixos-rebuild boot with nom'
+    sudo -v
+    sudo nixos-rebuild boot $argv --log-format internal-json &| nom --json
+end
