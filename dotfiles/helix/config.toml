@@ -37,5 +37,6 @@ other-lines = "warning"
 
 [keys.normal]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+A-S-f = [":pipe rustfmt --config wrap_comments=true"]
 # "space" = { q = ":q" }
 # A-w = ":w"
