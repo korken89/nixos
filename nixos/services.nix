@@ -14,6 +14,8 @@ in
   # Enable netbird daemon
   services.netbird.enable = true;
 
+  services.logind.settings.Login.HandlePowerKey = "ignore";
+
   # Syncthing
   services.syncthing = {
     enable = true;
