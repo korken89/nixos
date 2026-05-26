@@ -19,7 +19,6 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman = {
     enable = true;
-    withApplet = false;
   };
 
   # Saleae
