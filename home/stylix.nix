@@ -50,8 +50,10 @@
     targets = {
       alacritty.enable = true;
       gtk.enable = true;
+      gtksourceview.enable = lib.mkForce false; # Break cache for inkscape
       lazygit.enable = true;
       opencode.enable = true;
+      qt.enable = true;
     };
   };
 }
