@@ -64,34 +64,35 @@ in
                       mountpoint = "/boot";
                     };
                   };
-                } // (
-                    if cfg.encryption then
-                      {
-                        luks = {
-                          label = "ZFS-Root-Via-LUKS-Partition";
-                          size = cfg.size;
-                          content = {
-                            type = "luks";
-                            name = "crypted-${zfsRootPool}";
-                            content = {
-                              type = "zfs";
-                              pool = zfsRootPool;
-                            };
-                          };
-                        };
-                      }
-                    else
-                      {
-                        zroot = {
-                          label = "ZFS-Root-Partition";
-                          size = cfg.size;
+                }
+                // (
+                  if cfg.encryption then
+                    {
+                      luks = {
+                        label = "ZFS-Root-Via-LUKS-Partition";
+                        size = cfg.size;
+                        content = {
+                          type = "luks";
+                          name = "crypted-${zfsRootPool}";
                           content = {
                             type = "zfs";
                             pool = zfsRootPool;
                           };
                         };
-                      }
-                  );
+                      };
+                    }
+                  else
+                    {
+                      zroot = {
+                        label = "ZFS-Root-Partition";
+                        size = cfg.size;
+                        content = {
+                          type = "zfs";
+                          pool = zfsRootPool;
+                        };
+                      };
+                    }
+                );
               };
             };
           };
@@ -108,6 +109,7 @@ in
           efiInstallAsRemovable = true;
           useOSProber = true;
           configurationLimit = 4;
+          memtest86.enable = true;
         };
         disko.devices = {
           zpool = {
