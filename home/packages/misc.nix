@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     # Miscellaneous
+    feh
+    imv
 
     # Math & Science
     octaveFull
