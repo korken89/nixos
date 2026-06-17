@@ -1,5 +1,5 @@
 # Auto-start Niri on TTY1
-if test -z "$WAYLAND_DISPLAY" && test "$XDG_VTNR" -eq 1
+if test -z "$WAYLAND_DISPLAY" && test "$XDG_VTNR" = 1
     exec @niri@/bin/niri-session
 end
 
