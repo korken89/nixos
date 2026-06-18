@@ -4,6 +4,7 @@
     # Miscellaneous
     feh
     imv
+    poppler-utils
 
     # Math & Science
     octaveFull
