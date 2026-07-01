@@ -1,23 +1,23 @@
 final: prev:
 let
-  version = "2.1.177";
+  version = "2.1.197";
   baseUrl = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases";
   checksums = {
     "aarch64-darwin" = {
       platformKey = "darwin-arm64";
-      sha256 = "eb0730351be2f02b482b1855870f5877489085aac86b0c4c1db4e458d9e40ed9";
+      sha256 = "8cc0c4d1e4eb1dca3b0cc92ab02ee3505de764e023f8c901761c167b72041fb8";
     };
     "x86_64-darwin" = {
       platformKey = "darwin-x64";
-      sha256 = "fcdc6c6679d4e1e3a0a3812f24e8b08ab73156732072c2ca5ee6248bee8313bd";
+      sha256 = "5e8a57cc7a92377f0744fa4c79191cf93d4b26c79cb919b07a407511fed1be26";
     };
     "aarch64-linux" = {
       platformKey = "linux-arm64";
-      sha256 = "baf3926dc166215772f959e367da9784ff4c75157aaafe4524fdc79ebff984b1";
+      sha256 = "fb48473c467c27615ac799a754f4ef0b68c363e4596cefbb59c3815d51a0cc8a";
     };
     "x86_64-linux" = {
       platformKey = "linux-x64";
-      sha256 = "ff41753634b20c869ef6a32a20863521b33d4186ac0d6a49379ab48a48395ee7";
+      sha256 = "f54e69cbc89b2da61a415700af7ff52a147e862517d4f1b0eecf768448cf7f83";
     };
   };
   entry = checksums.${prev.stdenv.hostPlatform.system};
