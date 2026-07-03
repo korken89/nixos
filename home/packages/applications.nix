@@ -42,6 +42,9 @@
       # Network
       netbird
       mqttui
+
+      # Desktop streaming
+      moonlight-qt
     ]
     ++ lib.optionals (system == "x86_64-linux") [
       # x86_64 only
