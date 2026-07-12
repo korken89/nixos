@@ -31,6 +31,7 @@
 
     # Editors/IDEs
     claude-code
+    codex
 
     # Nix tools
     nixfmt
