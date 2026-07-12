@@ -15,7 +15,7 @@ in
     ./gtk.nix
     ./helix.nix
     ./notes.nix
-    ./openems.nix
+    # ./openems.nix
     ./packages/analysis.nix
     ./packages/applications.nix
     ./packages/cli-tools.nix
