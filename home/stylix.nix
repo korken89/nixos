@@ -10,6 +10,10 @@
     inputs.stylix.homeModules.stylix
   ];
 
+  # Stylix configures home.pointerCursor but leaves its `enable` to the
+  # deprecated auto-detection
+  home.pointerCursor.enable = true;
+
   stylix = {
     enable = true;
     polarity = "dark";
