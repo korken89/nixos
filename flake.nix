@@ -75,6 +75,7 @@
       overlays = [
         # (import ./overlays/openems.nix)
         (import ./overlays/claude-code.nix)
+        (import ./overlays/codex.nix)
       ];
 
       mkHost =
