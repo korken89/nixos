@@ -4,6 +4,7 @@
     # Development Tools
     autoconf
     automake
+    bubblewrap
     cmake
     gcc
     gcc-arm-embedded
