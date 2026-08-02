@@ -102,6 +102,12 @@ in
         networking.hostId = "deadbeef"; # ZFS requirement
         services.zfs.autoScrub.enable = true;
         boot.zfs.forceImportRoot = false;
+        # The initrd ZFS import polls for the pool for only 60 s, racing the
+        # LUKS passphrase prompt. Order the import after the unlock instead.
+        boot.initrd.systemd.services."zfs-import-${zfsRootPool}" = mkIf cfg.encryption {
+          after = [ "cryptsetup.target" ];
+          requires = [ "cryptsetup.target" ];
+        };
         boot.loader.grub = {
           enable = true;
           device = "nodev";

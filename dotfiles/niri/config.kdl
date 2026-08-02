@@ -7,6 +7,11 @@
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
+    // The power-button press that wakes the laptop from s2idle is replayed to
+    // niri after resume, which instantly re-suspends and wedges the machine
+    // (niri issue #2233). Suspend via lid close or a keybind instead.
+    disable-power-key-handling
+
     // Disable touchscreen
     touch {
         off
@@ -357,6 +362,7 @@ binds {
     Mod+Return { spawn "alacritty"; }
     Mod+D { spawn "rofi" "-show" "drun" "-show-icons" "-display-drun" ">"; }
     Mod+Shift+B { spawn "swaylock" "-f" "-c" "000000"; }
+    Mod+Shift+S { spawn "systemctl" "suspend"; }
     Mod+E { spawn "thunar"; }
     Mod+N { spawn "take-notes"; }
 
