@@ -22,7 +22,7 @@ end
 function ls -d 'eza instead of ls when output is a terminal'
     if isatty 1
         if type --quiet @eza@/bin/eza
-            @eza@/bin/eza --group-directories-first --git --icons $argv
+            @eza@/bin/eza --group-directories-first --git --icons=auto $argv
         else
             command ls --color=auto $argv
         end
