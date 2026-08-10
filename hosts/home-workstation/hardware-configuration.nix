@@ -30,6 +30,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  # One 32G DIMM has a bad region at 0xe44ab0000-0xe44abffff (found via memtest86),
+  # reserve 16M around it. The \$ escape is required by GRUB.
+  boot.kernelParams = [ "memmap=16M\\$0xe44000000" ];
+
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
