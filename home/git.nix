@@ -66,7 +66,28 @@
           "--limit"
           "20"
         ];
-        diff-formatter = ":git";
+        # Real git as diff formatter: jj's builtin ":git" has no move
+        # detection, so delta never sees --color-moved colors.
+        # mkForce: delta's enableJujutsuIntegration also sets this.
+        diff-formatter = lib.mkForce "git-diff";
+      };
+
+      merge-tools.git-diff = {
+        program = "git";
+        diff-args = [
+          "--no-pager"
+          "diff"
+          "--no-index"
+          "--color=always"
+          "--color-moved=default"
+          "--color-moved-ws=allow-indentation-change"
+          "$left"
+          "$right"
+        ];
+        diff-expected-exit-codes = [
+          0
+          1
+        ];
       };
 
       user.name = "Emil Fresk";
