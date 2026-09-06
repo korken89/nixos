@@ -74,6 +74,7 @@
 
       overlays = [
         # (import ./overlays/openems.nix)
+        (import ./overlays/mattermost-desktop.nix)
       ];
 
       mkHost =
