@@ -34,6 +34,11 @@
       libsigrok
       openocd
     ];
+
+    # WCH CH347 (wch-probe)
+    extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55d[a-e]", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+    '';
   };
   hardware.probe-rs.enable = true;
 }
