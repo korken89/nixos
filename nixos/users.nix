@@ -11,6 +11,7 @@
       description = "Emil Fresk";
       extraGroups = [
         "audio"
+        "dialout"
         "docker"
         "networkmanager"
         "plugdev"
