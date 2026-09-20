@@ -21,7 +21,9 @@ in
       # Embedded/Hardware Development
       probe-rs-tools
       qemu
-      sdcc
+      # sdcc 4.6 ships binutils bits that collide with gcc (c++filt, prio 10)
+      # and gcc-arm-embedded (ctf/sframe-spec.info, prio 5); 15 loses to both
+      (lib.setPrio 15 sdcc)
       tio
       usbtop
       udev
