@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     # Miscellaneous
     feh
+    imagemagick
     imv
     poppler-utils
 

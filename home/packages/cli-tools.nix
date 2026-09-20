@@ -10,15 +10,20 @@
     file
     fzf
     graphviz
+    hyperfine
     jq
+    moreutils
     pigz
     ripgrep
     sd
+    sqlite
+    tree
     unzip
     usbutils
     wget
     xdot
     xxd
+    yq-go
     zip
   ];
 }

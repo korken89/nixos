@@ -14,6 +14,16 @@
     python3
     rustup
 
+    # Linters & formatters
+    shellcheck
+    shfmt
+    taplo
+    typos
+
+    # Python
+    ruff
+    uv
+
     # Nordic
     # nrf-command-line-tools
     # nrfconnect
