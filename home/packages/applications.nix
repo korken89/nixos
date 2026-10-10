@@ -32,7 +32,7 @@
 
       # Documents
       kdePackages.okular
-      libreoffice-qt6-fresh
+      libreoffice-qt
       zathura
       obsidian
 
