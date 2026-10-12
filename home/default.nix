@@ -25,6 +25,7 @@ in
     ./packages/misc.nix
     ./packages/writing.nix
     ./screens.nix
+    ./ssh.nix
     ./shell-tools.nix
     ./stylix.nix
     ./swayidle.nix
