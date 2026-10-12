@@ -14,6 +14,7 @@ in
     ./git.nix
     ./gtk.nix
     ./helix.nix
+    ./herdr.nix
     ./notes.nix
     # ./openems.nix
     ./packages/analysis.nix
