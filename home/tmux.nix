@@ -7,7 +7,7 @@
 {
   home.packages = [
     pkgs.tmux
-    pkgs.sesh
+    # pkgs.sesh
     pkgs.gum
   ];
 
