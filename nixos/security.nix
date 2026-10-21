@@ -23,4 +23,9 @@
   security.polkit.enable = true;
   # security.pam.services.swaylock = {};
   services.dbus.enable = true;
+
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
+  ];
 }
