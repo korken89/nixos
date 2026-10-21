@@ -63,7 +63,8 @@ let
       if ! urls=$(
         herdr pane read "$HERDR_ACTIVE_PANE_ID" --source recent-unwrapped --lines 2000 \
           | grep -Eo '(http|https)://[a-zA-Z0-9./?=_%:+&~@-]*' \
-          | sort -u
+          | tac \
+          | awk '!seen[$0]++'
       ); then
         echo "No URLs found"
         read -rsn1 -t 1 || true
