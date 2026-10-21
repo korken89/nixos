@@ -62,7 +62,7 @@
           "log"
           "--reversed"
           "-r"
-          "::"
+          "trunk() | ancestors(mutable(), 2)"
           "--limit"
           "20"
         ];
