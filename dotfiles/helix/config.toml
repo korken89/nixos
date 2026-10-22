@@ -9,6 +9,7 @@ mouse = false
 auto-pairs = false
 end-of-line-diagnostics = "hint"
 true-color = true
+scrolloff = 999 # capped at half the view, keeps the cursor centered
 
 [editor.cursor-shape]
 normal = "block"
