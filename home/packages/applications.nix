@@ -8,14 +8,8 @@ let
   # Bambu Studio with Zink (OpenGL-over-Vulkan), it does not render on the NVIDIA GL driver
   bambu-studio-zink = pkgs.symlinkJoin {
     name = "bambu-studio-zink";
-    paths = [
-      # Not in the binary cache, and a full-width local build runs out of RAM
-      (pkgs.bambu-studio.overrideAttrs (old: {
-        preBuild = (old.preBuild or "") + ''
-          NIX_BUILD_CORES=4
-        '';
-      }))
-    ];
+    # Unmodified so it is fetched from nix-community.cachix.org
+    paths = [ pkgs.bambu-studio ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/bambu-studio \
