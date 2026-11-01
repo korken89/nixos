@@ -10,7 +10,6 @@
     helix
     nil
     markdown-oxide
-    ltex-ls
     ltex-ls-plus
     tinymist
     harper
