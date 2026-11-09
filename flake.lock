@@ -432,6 +432,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
         "probe-rs-rules": "probe-rs-rules",
+        "solidcraft": "solidcraft",
         "stylix": "stylix",
         "x1e-nixos-config": "x1e-nixos-config"
       }
@@ -454,6 +455,27 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "solidcraft": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794085185,
+        "narHash": "sha256-IWCooZOXCap6frmP2BSgpw84OuvazvdwCW0uWv84lJQ=",
+        "owner": "tangency-labs",
+        "repo": "solidcraft",
+        "rev": "7001949c49e211a430fe4747221589b2b9384f2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tangency-labs",
+        "ref": "v0.40.0-rc.3",
+        "repo": "solidcraft",
         "type": "github"
       }
     },

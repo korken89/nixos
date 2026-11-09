@@ -2,9 +2,21 @@
   pkgs,
   lib,
   system,
+  inputs,
   ...
 }:
 let
+  solidcraft = inputs.solidcraft.packages.${system}.solidcraft.overrideAttrs (old: {
+    # A hash makes the git dependency a shallow fetch, instead of a full clone with builtins.fetchGit
+    cargoDeps = pkgs.rustPlatform.importCargoLock {
+      lockFile = "${inputs.solidcraft}/Cargo.lock";
+      outputHashes."solidcore-1.0.1" = "sha256-22cfF2ZTusRFA/zaGmpMFp67/YYUkTqoEh1q92FYqaM=";
+    };
+    postFixup = (old.postFixup or "") + ''
+      wrapProgram $out/bin/solidcraft --set SOLIDCRAFT_WAYLAND 1
+    '';
+  });
+
   # Bambu Studio with Zink (OpenGL-over-Vulkan), it does not render on the NVIDIA GL driver
   bambu-studio-zink = pkgs.symlinkJoin {
     name = "bambu-studio-zink";
@@ -46,6 +58,9 @@ in
       # Graphics
       gimp3
       inkscape
+
+      # CAD
+      solidcraft
 
       # Documents
       kdePackages.okular
