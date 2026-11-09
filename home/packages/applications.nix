@@ -2,20 +2,37 @@
   pkgs,
   lib,
   system,
-  inputs,
   ...
 }:
 let
-  solidcraft = inputs.solidcraft.packages.${system}.solidcraft.overrideAttrs (old: {
-    # A hash makes the git dependency a shallow fetch, instead of a full clone with builtins.fetchGit
-    cargoDeps = pkgs.rustPlatform.importCargoLock {
-      lockFile = "${inputs.solidcraft}/Cargo.lock";
-      outputHashes."solidcore-1.0.1" = "sha256-22cfF2ZTusRFA/zaGmpMFp67/YYUkTqoEh1q92FYqaM=";
+  solidcraft =
+    let
+      pname = "solidcraft";
+      version = "0.40.0-rc.3";
+      arch = lib.head (lib.splitString "-" system);
+      src = pkgs.fetchurl {
+        url = "https://github.com/tangency-labs/solidcraft/releases/download/v${version}/solidcraft-${version}-linux-${arch}.AppImage";
+        hash =
+          {
+            x86_64 = "sha256-Z+jepAuAchfW1qiP8fK2Qzzfv0tHXuJRldNhLYhrX1s=";
+            aarch64 = "sha256-KjGDd2w8n1HsRsfrL6Qa9x+Yqe82N9PJopOuJ4oxhRg=";
+          }
+          .${arch};
+      };
+      contents = pkgs.appimageTools.extract { inherit pname version src; };
+    in
+    pkgs.appimageTools.wrapType2 {
+      inherit pname version src;
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      # AppRun otherwise writes a .desktop file and a CLI wrapper into $HOME on each start
+      extraInstallCommands = ''
+        wrapProgram $out/bin/solidcraft \
+          --set SOLIDCRAFT_WAYLAND 1 \
+          --set SOLIDCRAFT_NO_DESKTOP_INTEGRATION 1
+        install -Dm444 ${contents}/io.tangencylabs.solidcraft.desktop -t $out/share/applications
+        cp -r ${contents}/usr/share/{icons,mime,metainfo} $out/share
+      '';
     };
-    postFixup = (old.postFixup or "") + ''
-      wrapProgram $out/bin/solidcraft --set SOLIDCRAFT_WAYLAND 1
-    '';
-  });
 
   # Bambu Studio with Zink (OpenGL-over-Vulkan), it does not render on the NVIDIA GL driver
   bambu-studio-zink = pkgs.symlinkJoin {

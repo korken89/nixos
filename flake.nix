@@ -42,11 +42,6 @@
       inputs.niri-stable.follows = "niri-stable";
     };
     niri-stable.url = "github:YaLTeR/niri/v25.02";
-
-    solidcraft = {
-      url = "github:tangency-labs/solidcraft/v0.40.0-rc.3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
