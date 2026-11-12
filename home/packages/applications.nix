@@ -8,14 +8,14 @@ let
   solidcraft =
     let
       pname = "solidcraft";
-      version = "0.40.0-rc.3";
+      version = "0.40.1";
       arch = lib.head (lib.splitString "-" system);
       src = pkgs.fetchurl {
         url = "https://github.com/tangency-labs/solidcraft/releases/download/v${version}/solidcraft-${version}-linux-${arch}.AppImage";
         hash =
           {
-            x86_64 = "sha256-Z+jepAuAchfW1qiP8fK2Qzzfv0tHXuJRldNhLYhrX1s=";
-            aarch64 = "sha256-KjGDd2w8n1HsRsfrL6Qa9x+Yqe82N9PJopOuJ4oxhRg=";
+            x86_64 = "sha256-fzF4x39TSyi0omOBCpQK2L8IjZt9mT12ZTeQOklRHC0=";
+            aarch64 = "sha256-ET7W7kV2l5ajej1DNTTdj2NRT4Cki7TcR7c58bY9qXI=";
           }
           .${arch};
       };
