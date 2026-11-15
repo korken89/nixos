@@ -29,6 +29,8 @@ let
         wrapProgram $out/bin/solidcraft \
           --set SOLIDCRAFT_WAYLAND 1 \
           --set SOLIDCRAFT_NO_DESKTOP_INTEGRATION 1
+        makeWrapper $out/bin/solidcraft $out/bin/solidcraft-cli \
+          --set SOLIDCRAFT_APPIMAGE_CLI 1
         install -Dm444 ${contents}/io.tangencylabs.solidcraft.desktop -t $out/share/applications
         cp -r ${contents}/usr/share/{icons,mime,metainfo} $out/share
       '';
