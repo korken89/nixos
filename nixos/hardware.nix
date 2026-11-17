@@ -44,4 +44,7 @@
     '';
   };
   hardware.probe-rs.enable = true;
+
+  # CH347: read bInterval as ms, else more than ~3 probes on one root port fail with "Not enough bandwidth"
+  boot.kernelParams = [ "usbcore.quirks=1a86:55de:l" ];
 }
