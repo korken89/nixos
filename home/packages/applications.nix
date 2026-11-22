@@ -36,20 +36,54 @@ let
       '';
     };
 
-  # Bambu Studio with Zink (OpenGL-over-Vulkan), it does not render on the NVIDIA GL driver
-  bambu-studio-zink = pkgs.symlinkJoin {
-    name = "bambu-studio-zink";
-    # Unmodified so it is fetched from nix-community.cachix.org
-    paths = [ pkgs.bambu-studio ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/bambu-studio \
-        --set __GLX_VENDOR_LIBRARY_NAME mesa \
-        --set __EGL_VENDOR_LIBRARY_FILENAMES ${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json \
-        --set MESA_LOADER_DRIVER_OVERRIDE zink \
-        --set GALLIUM_DRIVER zink
-    '';
-  };
+  # Upstream AppImage, nixpkgs lags behind the releases
+  bambu-studio =
+    let
+      pname = "bambu-studio";
+      version = "02.09.01.70";
+      build = "20261103183404";
+      src = pkgs.fetchurl {
+        url = "https://github.com/bambulab/BambuStudio/releases/download/v${version}/BambuStudio_ubu24-v${version}-${build}.AppImage";
+        hash = "sha256-Zo2rsb5Tx1gYnta8iZNShd6l4K9GIWVGsbr9aILpr/A=";
+      };
+      contents = pkgs.appimageTools.extract { inherit pname version src; };
+      gstPlugins = with pkgs.gst_all_1; [
+        gst-plugins-base
+        gst-plugins-good
+        gst-plugins-bad
+      ];
+    in
+    pkgs.appimageTools.wrapType2 {
+      inherit pname version src;
+      extraPkgs =
+        pkgs: with pkgs; [
+          webkitgtk_4_1
+          gst_all_1.gstreamer
+          gst_all_1.gst-plugins-base
+        ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      # The FHS locale archive has en_GB, which the app requires for English.
+      # WebKit flags fix the login callback, Zink (OpenGL-over-Vulkan) fixes rendering on the NVIDIA GL driver.
+      extraInstallCommands = ''
+        wrapProgram $out/bin/bambu-studio \
+          --set LOCALE_ARCHIVE /usr/lib/locale/locale-archive \
+          --set LOCALE_ARCHIVE_2_27 /usr/lib/locale/locale-archive \
+          --set-default SSL_CERT_FILE ${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt \
+          --set-default CURL_CA_BUNDLE ${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt \
+          --prefix GIO_EXTRA_MODULES : ${pkgs.glib-networking}/lib/gio/modules \
+          --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : ${pkgs.lib.makeSearchPath "lib/gstreamer-1.0" gstPlugins} \
+          --set WEBKIT_DISABLE_COMPOSITING_MODE 1 \
+          --set WEBKIT_DISABLE_DMABUF_RENDERER 1 \
+          --set __GLX_VENDOR_LIBRARY_NAME mesa \
+          --set __EGL_VENDOR_LIBRARY_FILENAMES ${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json \
+          --set MESA_LOADER_DRIVER_OVERRIDE zink \
+          --set GALLIUM_DRIVER zink
+        install -Dm444 ${contents}/BambuStudio.desktop -t $out/share/applications
+        substituteInPlace $out/share/applications/BambuStudio.desktop \
+          --replace-fail 'Exec=AppRun' 'Exec=bambu-studio'
+        install -Dm444 ${contents}/BambuStudio.png -t $out/share/icons/hicolor/192x192/apps
+      '';
+    };
 in
 {
   home.packages =
@@ -99,7 +133,7 @@ in
     ]
     ++ lib.optionals (system == "x86_64-linux") [
       # x86_64 only
-      bambu-studio-zink
+      bambu-studio
       spotify
       slack
     ];
