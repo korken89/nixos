@@ -61,10 +61,10 @@
         default-command = [
           "log"
           "--reversed"
-          "-r"
-          "trunk() | ancestors(mutable(), 2)"
-          "--limit"
-          "20"
+          # "-r"
+          # "trunk() | ancestors(mutable(), 2)"
+          # "--limit"
+          # "20"
         ];
         # Real git as diff formatter: jj's builtin ":git" has no move
         # detection, so delta never sees --color-moved colors.
@@ -91,6 +91,14 @@
       };
 
       user.name = "Emil Fresk";
+
+      # Log is reversed, so open the pager at the bottom (newest changes).
+      "--scope" = [
+        {
+          "--when".commands = [ "log" ];
+          ui.pager = "${pkgs.less}/bin/less -FRX --cmd=G";
+        }
+      ];
     };
   };
 }
